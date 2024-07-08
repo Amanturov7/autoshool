@@ -1,4 +1,4 @@
-import 'package:autoshool/pages/tests/tickets_page.dart';
+import 'package:autoshool/tests/tickets_page.dart';
 import 'package:autoshool/profile/login_page.dart';
 import 'package:autoshool/profile/signin_page.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) =>  HomePage(),
         '/journal': (context) =>  JournalPage(),
         '/materials': (context) =>  MaterialsPage(),
-        '/tests': (context) => TicketsPage(),
+        '/tests': (context) => TestsPage(),
         '/profile': (context) =>  ProfilePage(),
         '/login': (context) =>  LoginPage(),
         '/signup': (context) =>  SignUpPage(),
