@@ -1,3 +1,6 @@
+import 'package:autoshool/pages/tests/tickets_page.dart';
+import 'package:autoshool/profile/login_page.dart';
+import 'package:autoshool/profile/signin_page.dart';
 import 'package:flutter/material.dart';
 import 'package:autoshool/pages/home_page.dart';
 import 'package:autoshool/pages/journal_page.dart';
@@ -15,16 +18,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'AutoSchool',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        // Добавляем цвета для BottomNavigationBar
+        // Adding colors for BottomNavigationBar
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          selectedItemColor: Color.fromARGB(255, 48, 187, 48), // Цвет выбранного элемента
-          unselectedItemColor: Colors.black54, // Цвет не выбранных элементов
+          selectedItemColor: Color.fromARGB(255, 48, 187, 48), // Color of the selected item
+          unselectedItemColor: Colors.black54, // Color of the unselected items
         ),
       ),
       home: const MyHomePage(),
+      routes: {
+        '/home': (context) =>  HomePage(),
+        '/journal': (context) =>  JournalPage(),
+        '/materials': (context) =>  MaterialsPage(),
+        '/tests': (context) => TicketsPage(),
+        '/profile': (context) =>  ProfilePage(),
+        '/login': (context) =>  LoginPage(),
+        '/signup': (context) =>  SignUpPage(),
+
+      },
     );
   }
 }
@@ -39,11 +52,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
   final List<Widget> _screens = [
-    const HomePage(),
-    const JournalPage(),
-    const MaterialsPage(),
-    const TestsPage(),
-    const ProfilePage(),
+     HomePage(),
+     JournalPage(),
+     MaterialsPage(),
+     TestsPage(),
+     ProfilePage(),
   ];
 
   @override

@@ -1,4 +1,3 @@
-import 'package:autoshool/pages/tests/tickets_page.dart';
 import 'package:autoshool/pages/tests_page.dart';
 import 'package:flutter/material.dart';
 
@@ -10,8 +9,7 @@ class Ticket {
   Ticket({required this.title, required this.description});
 }
 
-class TestsPage extends StatelessWidget {
-
+class TicketsPage extends StatelessWidget {
   final List<Ticket> tickets = [
     Ticket(title: 'Ticket 1', description: 'Description of Ticket 1'),
     Ticket(title: 'Ticket 2', description: 'Description of Ticket 2'),
