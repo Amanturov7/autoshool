@@ -15,7 +15,9 @@ dependencies:
   http: ^1.2.1
   url_launcher: ^6.2.5
   easy_localization: ^3.0.5
-  image: ^4.2.0 
+  image: ^4.2.0
+  search_page: ^2.3.0
+
 
 dev_dependencies:
   flutter_test:
