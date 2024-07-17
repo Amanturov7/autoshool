@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:autoshool/journal/cars_page.dart';
 import 'package:autoshool/journal/group_page.dart';
 import 'package:autoshool/journal/user_page.dart';
@@ -9,9 +10,6 @@ class JournalPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Журнал'),
-      ),
       body: Column(
         children: <Widget>[
           Expanded(
@@ -23,10 +21,13 @@ class JournalPage extends StatelessWidget {
                 );
               },
               child: Container(
+                margin: const EdgeInsets.all(8.0), // Добавляем отступы
                 decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16.0), // Радиус блоков
                   image: DecorationImage(
-                    image: AssetImage('assets/groups.jpg'), // Фоновое изображение для раздела "Группы"
+                    image: AssetImage('assets/images/groups.png'), // Фоновое изображение для раздела "Группы"
                     fit: BoxFit.cover,
+                    colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.darken), // Затемнение
                   ),
                 ),
                 child: Center(
@@ -36,7 +37,13 @@ class JournalPage extends StatelessWidget {
                       fontSize: 24,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                      backgroundColor: Colors.black54, // Полупрозрачный фон для текста
+                      shadows: [ // Добавление теней к тексту
+                        Shadow(
+                          offset: Offset(2.0, 2.0),
+                          blurRadius: 3.0,
+                          color: Color.fromARGB(128, 0, 0, 0),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -52,10 +59,13 @@ class JournalPage extends StatelessWidget {
                 );
               },
               child: Container(
+                margin: const EdgeInsets.all(8.0), // Добавляем отступы
                 decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16.0), // Радиус блоков
                   image: DecorationImage(
-                    image: AssetImage('assets/users.jpg'), // Фоновое изображение для раздела "Пользователи"
+                    image: AssetImage('assets/images/users.png'), // Фоновое изображение для раздела "Пользователи"
                     fit: BoxFit.cover,
+                    colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.darken), // Затемнение
                   ),
                 ),
                 child: Center(
@@ -65,7 +75,13 @@ class JournalPage extends StatelessWidget {
                       fontSize: 24,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                      backgroundColor: Colors.black54, // Полупрозрачный фон для текста
+                      shadows: [ // Добавление теней к тексту
+                        Shadow(
+                          offset: Offset(2.0, 2.0),
+                          blurRadius: 3.0,
+                          color: Color.fromARGB(128, 0, 0, 0),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -81,10 +97,13 @@ class JournalPage extends StatelessWidget {
                 );
               },
               child: Container(
+                margin: const EdgeInsets.all(8.0), // Добавляем отступы
                 decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16.0), // Радиус блоков
                   image: DecorationImage(
-                    image: AssetImage('assets/cars.jpg'), // Фоновое изображение для раздела "Машины"
+                    image: AssetImage('assets/images/cars.png'), // Фоновое изображение для раздела "Машины"
                     fit: BoxFit.cover,
+                    colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.darken), // Затемнение
                   ),
                 ),
                 child: Center(
@@ -94,7 +113,13 @@ class JournalPage extends StatelessWidget {
                       fontSize: 24,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                      backgroundColor: Colors.black54, // Полупрозрачный фон для текста
+                      shadows: [ // Добавление теней к тексту
+                        Shadow(
+                          offset: Offset(2.0, 2.0),
+                          blurRadius: 3.0,
+                          color: Color.fromARGB(128, 0, 0, 0),
+                        ),
+                      ],
                     ),
                   ),
                 ),
