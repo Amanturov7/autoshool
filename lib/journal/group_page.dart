@@ -1,8 +1,9 @@
+import 'package:autoshool/group/form_group.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:autoshool/constants.dart';
-import 'package:search_page/search_page.dart'; // Импортируем search_page
+import 'package:search_page/search_page.dart'; // Import search_page
 
 class GroupsPage extends StatefulWidget {
   const GroupsPage({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class GroupsPage extends StatefulWidget {
 
 class _GroupsPageState extends State<GroupsPage> {
   late Future<List<dynamic>> _groupsFuture;
-  late List<dynamic> _groups = []; // Список для хранения загруженных групп
+  late List<dynamic> _groups = []; // List to store loaded groups
 
   @override
   void initState() {
@@ -30,34 +31,43 @@ class _GroupsPageState extends State<GroupsPage> {
     }
   }
 
+  void _createGroup() {
+    // Implement logic to create a new group
+    // For example, navigate to a page where users can create a group
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CreateGroupPage()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Группы'),
+        title: const Text('Groups'),
         actions: [
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () async {
-              _groups = await _groupsFuture; // Загружаем данные групп
+              _groups = await _groupsFuture; // Load groups data
               showSearch(
                 context: context,
                 delegate: SearchPage<dynamic>(
-                  items: _groups, // Передаём загруженные группы в items
-                  searchLabel: 'Поиск групп',
+                  items: _groups, // Pass loaded groups to items
+                  searchLabel: 'Search groups',
                   suggestion: Center(
-                    child: Text('Поиск групп по названию'),
+                    child: Text('Search groups by name'),
                   ),
                   failure: Center(
-                    child: Text('Нет результатов по вашему запросу :('),
+                    child: Text('No results found :('),
                   ),
-                  filter: (group) => [group['name']], // Фильтруем по названию
+                  filter: (group) => [group['name']], // Filter by name
                   builder: (group) => Card(
                     margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                     child: ListTile(
                       title: Text(group['name']),
                       onTap: () {
-                        // Действия при выборе элемента
+                        // Actions when item is tapped
                       },
                     ),
                   ),
@@ -75,7 +85,7 @@ class _GroupsPageState extends State<GroupsPage> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('Нет данных'));
+            return Center(child: Text('No data'));
           } else {
             return ListView.builder(
               itemCount: snapshot.data!.length,
@@ -113,6 +123,19 @@ class _GroupsPageState extends State<GroupsPage> {
           }
         },
       ),
+floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+floatingActionButton: FloatingActionButton.extended(
+  onPressed: () {
+    _createGroup();
+  },
+  label: Text(
+          'Создать группу',style: TextStyle(fontSize: 18,color: Colors.white),),
+  backgroundColor: const Color.fromRGBO(82, 170, 94, 1.0),
+        icon: const Icon(Icons.group_add, color: Colors.white, size: 25),
+
+),
+
     );
   }
 }
+

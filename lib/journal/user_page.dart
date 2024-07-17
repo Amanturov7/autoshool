@@ -15,6 +15,34 @@ class UsersPage extends StatelessWidget {
     }
   }
 
+  void _createUser(BuildContext context) {
+    // Placeholder function for creating a user
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Create User'),
+          content: Text('Add UI elements here to create a user.'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('Create'),
+              onPressed: () {
+                // Implement logic to create a user
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +52,13 @@ class UsersPage extends StatelessWidget {
       body: FutureBuilder<List<dynamic>>(
         future: fetchUsers(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(child: Text('No data'));
+          } else {
             return ListView.builder(
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
@@ -47,9 +81,9 @@ class UsersPage extends StatelessWidget {
                             radius: 40, // Adjust the size as needed
                             backgroundImage: NetworkImage(avatarUrl),
                           ),
-                          SizedBox(width: 16), // Adjust spacing between avatar and text
+                          const SizedBox(width: 16), // Adjust spacing between avatar and text
                           Expanded(
-                            child: Text(username, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                            child: Text(username, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                           ),
                         ],
                       ),
@@ -58,11 +92,20 @@ class UsersPage extends StatelessWidget {
                 );
               },
             );
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
           }
-          return const Center(child: CircularProgressIndicator());
         },
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          _createUser(context);
+        },
+        label: const Text(
+          'Создать пользователя',
+          style: TextStyle(fontSize: 18, color: Colors.white),
+        ),
+        backgroundColor: const Color.fromRGBO(82, 170, 94, 1.0),
+        icon: const Icon(Icons.person_add, color: Colors.white, size: 25),
       ),
     );
   }

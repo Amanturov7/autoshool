@@ -28,9 +28,6 @@ class TestsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Tickets'),
-      ),
       body: ListView.builder(
         padding: const EdgeInsets.all(10),
         shrinkWrap: true, // Allow ListView to wrap its content

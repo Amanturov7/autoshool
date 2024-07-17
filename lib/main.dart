@@ -1,3 +1,4 @@
+import 'package:autoshool/settings_page.dart';
 import 'package:autoshool/tests/tickets_page.dart';
 import 'package:autoshool/profile/login_page.dart';
 import 'package:autoshool/profile/signin_page.dart';
@@ -24,7 +25,6 @@ class _MyAppState extends State<MyApp> {
 
   void _toggleTheme() {
     setState(() {
-      // This toggles the darkMode value
       darkMode = !darkMode;
     });
   }
@@ -33,50 +33,30 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       themeMode: darkMode ? ThemeMode.dark : ThemeMode.light,
-
-      title: 'AutoSchool',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        // Define the default brightness and colors.
-        
         brightness: Brightness.light,
         primaryColor: Colors.lightBlue[800],
-        // Define the default font family.
         fontFamily: 'Georgia',
-        // Define the default `TextTheme`. Use this to specify the default
-        // text styling for headlines, titles, bodies of text, and more.
-        // textTheme: const TextTheme(
-        //   headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-        //   headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
-        //   bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
-        // ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          selectedItemColor: Color.fromARGB(255, 48, 187, 48), // Цвет для выбранного элемента
-          unselectedItemColor: Colors.black54, // Цвет для невыбранных элементов
+          selectedItemColor: Color.fromARGB(255, 48, 187, 48),
+          unselectedItemColor: Colors.black54,
           showUnselectedLabels: true,
           unselectedLabelStyle: TextStyle(
-            color: Colors.black54.withOpacity(0.2), // Установка цвета с прозрачностью
+            color: Colors.black54.withOpacity(0.2),
           ),
         ),
-
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
         primarySwatch: Colors.blue,
-        // Define the default font family.
         fontFamily: 'Georgia',
-
-        // textTheme: const TextTheme(
-        //   : TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-        //   headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
-        //   bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
-        // ),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          selectedItemColor: Color.fromARGB(255, 48, 187, 48), // Color of the selected item
-          unselectedItemColor: Colors.white54, // Color of the unselected items
+          selectedItemColor: Color.fromARGB(255, 48, 187, 48),
+          unselectedItemColor: Colors.white54,
         ),
       ),
-      home:  MyHomePage(toggleTheme: _toggleTheme),
+      home: MyHomePage(toggleTheme: _toggleTheme),
       routes: {
         '/home': (context) => HomePage(),
         '/journal': (context) => JournalPage(),
@@ -85,6 +65,7 @@ class _MyAppState extends State<MyApp> {
         '/profile': (context) => ProfilePage(),
         '/login': (context) => LoginPage(),
         '/signup': (context) => SignUpPage(),
+        '/settings': (context)=> SettingsPage()
       },
     );
   }
@@ -112,11 +93,37 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       appBar: AppBar(
-        title: const Text('AutoSchool'),
+        title: Center(
+          child: RichText(
+            text: TextSpan(
+              text: 'Автошкола ',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+              children: <TextSpan>[
+                TextSpan(
+                  text: 'Онлайн',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.green,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
         actions: [
-          IconButton(
-            icon: Icon(Icons.brightness_6),
+          // IconButton(
+          //   icon: Icon(Icons.brightness_6),
+          //   onPressed: widget.toggleTheme,
+          // ),
+                    IconButton(
+            icon: Icon(Icons.notifications),
             onPressed: widget.toggleTheme,
           ),
         ],
