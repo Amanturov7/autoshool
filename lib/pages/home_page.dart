@@ -1,4 +1,5 @@
 import 'package:autoshool/chat_bot.dart';
+import 'package:autoshool/home/books_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -96,7 +97,11 @@ class HomePage extends StatelessWidget {
                     minimumSize: Size(180, 180),
                     maximumSize: Size(180, 180),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                     Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) =>  BooksPage()));
+                  },
                   icon: Icon(Icons.book, color: buttonTextColor),
                   label: Text('Книги', style: TextStyle(color: buttonTextColor)),
                 ),

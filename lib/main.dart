@@ -1,4 +1,4 @@
-import 'package:autoshool/settings_page.dart';
+import 'package:autoshool/pages/settings_page.dart';
 import 'package:autoshool/tests/tickets_page.dart';
 import 'package:autoshool/profile/login_page.dart';
 import 'package:autoshool/profile/signin_page.dart';
@@ -8,12 +8,26 @@ import 'package:autoshool/pages/journal_page.dart';
 import 'package:autoshool/pages/materials_page.dart';
 import 'package:autoshool/pages/tests_page.dart';
 import 'package:autoshool/pages/profile_page.dart';
+import 'package:easy_localization/easy_localization.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async  {
+    WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+  runApp(
+    EasyLocalization(
+      child: MyApp(),
+      supportedLocales: [Locale('en', 'US'), Locale('ru', 'RU'), Locale('ky', 'KG')],
+      path: 'assets/translations',
+      fallbackLocale: Locale('ru', 'RU'),
+      startLocale: Locale('ru', 'RU'),
+    ),
+  );
 }
+  
+
 
 class MyApp extends StatefulWidget {
+  
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -78,6 +92,8 @@ class MyHomePage extends StatefulWidget {
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
+
+  
 }
 
 class _MyHomePageState extends State<MyHomePage> {

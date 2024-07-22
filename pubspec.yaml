@@ -29,4 +29,5 @@ flutter:
     - assets\images\groups.png
     - assets\images\users.png
     - assets\images\cars.png
+    - assets/translations/
     
