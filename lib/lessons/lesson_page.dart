@@ -40,6 +40,8 @@ class _LessonsPageState extends State<LessonsPage> {
 
   @override
   Widget build(BuildContext context) {
+         bool isDarkTheme = Theme.of(context).brightness == Brightness.dark;
+        Color TextColor = isDarkTheme ? Colors.grey : Color.fromARGB(255, 54, 53, 53);
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -111,9 +113,9 @@ class _LessonsPageState extends State<LessonsPage> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(lessonName, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                                Text(lessonName, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: TextColor)),
                                 SizedBox(height: 8),
-                                Text(description, style: TextStyle(fontSize: 14)),
+                                Text(description, style: TextStyle(fontSize: 14, color: TextColor)),
                               ],
                             ),
                           ),
@@ -133,7 +135,7 @@ class _LessonsPageState extends State<LessonsPage> {
           _createLesson();
         },
         label: Text(
-          'Create Lesson', style: TextStyle(fontSize: 18, color: Colors.white),
+          'Create Lesson', style: TextStyle(fontSize: 18, color:Colors.white),
         ),
         backgroundColor: const Color.fromRGBO(82, 170, 94, 1.0),
         icon: const Icon(Icons.group_add, color: Colors.white, size: 25),

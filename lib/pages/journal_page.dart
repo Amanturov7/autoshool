@@ -9,6 +9,9 @@ class JournalPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+        bool isDarkTheme = Theme.of(context).brightness == Brightness.dark;
+        Color TextColor = isDarkTheme ? Colors.grey : Colors.white;
+
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -35,7 +38,7 @@ class JournalPage extends StatelessWidget {
                     'Группы',
                     style: TextStyle(
                       fontSize: 24,
-                      color: Colors.white,
+                      color: TextColor,
                       fontWeight: FontWeight.bold,
                       shadows: [ // Добавление теней к тексту
                         Shadow(
@@ -73,7 +76,7 @@ class JournalPage extends StatelessWidget {
                     'Пользователи',
                     style: TextStyle(
                       fontSize: 24,
-                      color: Colors.white,
+                      color: TextColor,
                       fontWeight: FontWeight.bold,
                       shadows: [ // Добавление теней к тексту
                         Shadow(
@@ -111,7 +114,7 @@ class JournalPage extends StatelessWidget {
                     'Машины',
                     style: TextStyle(
                       fontSize: 24,
-                      color: Colors.white,
+                      color: TextColor,
                       fontWeight: FontWeight.bold,
                       shadows: [ // Добавление теней к тексту
                         Shadow(

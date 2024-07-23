@@ -44,21 +44,21 @@ class MyApp extends StatelessWidget {
       themeMode: themeProvider.themeMode,
       theme: ThemeData.light().copyWith(
         textTheme: TextTheme(
-          displayLarge: TextStyle(color: Colors.black),
+          displayLarge: TextStyle(color: Color.fromARGB(255, 54, 53, 53)),
           displayMedium: TextStyle(color: Colors.green),
         ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          selectedItemColor: Colors.blue,
-          unselectedItemColor: Colors.black,
+          selectedItemColor: Colors.green,
+          unselectedItemColor: Color.fromARGB(255, 54, 53, 53),
         ),
       ),
       darkTheme: ThemeData.dark().copyWith(
         textTheme: TextTheme(
-          displayLarge: TextStyle(color: Colors.white),
+          displayLarge: TextStyle(color: Colors.grey),
           displayMedium: TextStyle(color: Colors.green),
         ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          selectedItemColor: Colors.white,
+          selectedItemColor: Colors.green,
           unselectedItemColor: Colors.grey,
         ),
       ),

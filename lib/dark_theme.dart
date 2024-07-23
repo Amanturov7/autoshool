@@ -22,7 +22,7 @@ class ThemeProvider extends ChangeNotifier {
 class MyThemes {
   static final darkTheme = ThemeData(
     scaffoldBackgroundColor: Colors.grey.shade900,
-    primaryColor: Colors.black,
+    primaryColor: Colors.grey,
      textTheme: TextTheme(
       headlineSmall: TextStyle(color: Colors.white),
       titleSmall: TextStyle(color: Colors.green),
@@ -32,8 +32,8 @@ class MyThemes {
   );
 
   static final lightTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.black,
-    primaryColor: Colors.black,
+    scaffoldBackgroundColor: Color.fromARGB(255, 54, 53, 53),
+    primaryColor: Color.fromARGB(255, 54, 53, 53),
     colorScheme: ColorScheme.light(),
     iconTheme: IconThemeData(color: Colors.red, opacity: 0.8),
   );
