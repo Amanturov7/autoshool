@@ -1,3 +1,4 @@
+import 'package:autoshool/home/books_page.dart';
 import 'package:autoshool/journal/group_page.dart';
 import 'package:autoshool/lessons/lesson_page.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,7 @@ class MaterialsPage extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    'Лекции',
+                    'Уроки',
                     style: TextStyle(
                       fontSize: 24,
                       color: Colors.white,
@@ -54,7 +55,7 @@ class MaterialsPage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const LessonsPage()),
+                  MaterialPageRoute(builder: (context) => BooksPage()),
                 );
               },
               child: Container(
@@ -86,6 +87,44 @@ class MaterialsPage extends StatelessWidget {
                 ),
               ),
               
+            ),
+          ),
+                       Expanded(
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LessonsPage()),
+                );
+              },
+              child: Container(
+                margin: const EdgeInsets.all(8.0), // Добавляем отступы
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16.0), // Радиус блоков
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/groups.png'), // Фоновое изображение для раздела "Группы"
+                    fit: BoxFit.cover,
+                    colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.darken), // Затемнение
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    'Тесты ПДД',
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      shadows: [ // Добавление теней к тексту
+                        Shadow(
+                          offset: Offset(2.0, 2.0),
+                          blurRadius: 3.0,
+                          color: Color.fromARGB(128, 0, 0, 0),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ),
           ),
              Expanded(
@@ -124,45 +163,6 @@ class MaterialsPage extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-          ),
-           Expanded(
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const LessonsPage()),
-                );
-              },
-              child: Container(
-                margin: const EdgeInsets.all(8.0), // Добавляем отступы
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16.0), // Радиус блоков
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/groups.png'), // Фоновое изображение для раздела "Группы"
-                    fit: BoxFit.cover,
-                    colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.darken), // Затемнение
-                  ),
-                ),
-                child: Center(
-                  child: Text(
-                    'Практические занятия',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      shadows: [ // Добавление теней к тексту
-                        Shadow(
-                          offset: Offset(2.0, 2.0),
-                          blurRadius: 3.0,
-                          color: Color.fromARGB(128, 0, 0, 0),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              
             ),
           ),
         ]

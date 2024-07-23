@@ -11,7 +11,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<bool>(
