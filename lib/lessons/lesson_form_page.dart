@@ -21,7 +21,7 @@ class _CreateLessonPageState extends State<CreateLessonPage> {
   bool _isArchived = false;
 
   List<int> _durations = [1, 3, 7, 14, 30, 60];
-  int _selectedDuration = 1;
+  int _selectedDuration = 60;
 
   @override
   void initState() {

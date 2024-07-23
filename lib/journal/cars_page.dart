@@ -1,3 +1,4 @@
+import 'package:autoshool/cars/form_cars_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -15,9 +16,11 @@ class CarsPage extends StatelessWidget {
     }
   }
 
-  void _createCar() {
-    // Placeholder function for creating a group
-    print('Добавление машины');
+  void _createCar(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CreateCarPage()),
+    );
   }
 
   @override
@@ -75,14 +78,12 @@ class CarsPage extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: _createCar,
+        onPressed: () => _createCar(context),
         label: const Text(
           'Добавить машину',
-          style: TextStyle(fontSize: 18, color: Colors.white,),
-          
+          style: TextStyle(fontSize: 18, color: Colors.white),
         ),
         backgroundColor: const Color.fromRGBO(82, 170, 94, 1.0),
-        
         icon: const Icon(Icons.local_car_wash, color: Colors.white, size: 25),
       ),
     );
