@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:autoshool/dark_theme.dart';
+import 'package:autoshool/dark_theme.dart'; // Make sure this file has the ThemeProvider and MyThemes class
 import 'package:autoshool/pages/home_page.dart';
 import 'package:autoshool/pages/journal_page.dart';
 import 'package:autoshool/pages/materials_page.dart';
@@ -42,26 +42,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       themeMode: themeProvider.themeMode,
-      theme: ThemeData.light().copyWith(
-        textTheme: TextTheme(
-          displayLarge: TextStyle(color: Color.fromARGB(255, 54, 53, 53)),
-          displayMedium: TextStyle(color: Colors.green),
-        ),
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          selectedItemColor: Colors.green,
-          unselectedItemColor: Color.fromARGB(255, 54, 53, 53),
-        ),
-      ),
-      darkTheme: ThemeData.dark().copyWith(
-        textTheme: TextTheme(
-          displayLarge: TextStyle(color: Colors.grey),
-          displayMedium: TextStyle(color: Colors.green),
-        ),
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          selectedItemColor: Colors.green,
-          unselectedItemColor: Colors.grey,
-        ),
-      ),
+      theme: MyThemes.lightTheme,
+      darkTheme: MyThemes.darkTheme,
       home: MyHomePage(),
       routes: {
         '/home': (context) => HomePage(),
@@ -96,12 +78,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final text = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
-        ? 'DarkTheme'
-        : 'LightTheme';
-
-    final headline1 = Theme.of(context).textTheme.displayLarge;
-    final headline2 = Theme.of(context).textTheme.displayMedium;
+    final headline1 = Theme.of(context).textTheme.headlineSmall;
+    final headline2 = Theme.of(context).textTheme.titleSmall;
 
     return Scaffold(
       appBar: AppBar(
@@ -126,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: _screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         unselectedLabelStyle: const TextStyle(fontSize: 14),
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
         selectedItemColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
         unselectedItemColor: Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
         currentIndex: _currentIndex,
