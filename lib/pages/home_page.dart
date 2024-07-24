@@ -9,6 +9,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isDarkTheme = Theme.of(context).brightness == Brightness.dark;
     Color buttonTextColor = isDarkTheme ? Colors.grey : Color.fromARGB(255, 54, 53, 53);
+    Color iconColor = isDarkTheme ? Colors.green : Colors.green;
+    Color surfaceTintColor = isDarkTheme ? Colors.green : Colors.green;
 
     return Scaffold(
       body: Column(
@@ -17,13 +19,15 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
+                splashFactory: NoSplash.splashFactory,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 minimumSize: Size(double.infinity, 80),
+                surfaceTintColor:surfaceTintColor
               ),
               onPressed: () {},
-              icon: Icon(Icons.school, color: buttonTextColor),
+              icon: Icon(Icons.school, color: iconColor),
               label: Text('Учебная карточка', style: TextStyle(color: buttonTextColor)),
             ),
           ),
@@ -37,39 +41,47 @@ class HomePage extends StatelessWidget {
               children: [
                 ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
+                    splashFactory: NoSplash.splashFactory,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
+                    surfaceTintColor:surfaceTintColor
                   ),
                   onPressed: () {},
-                  icon: Icon(Icons.directions_car, color: buttonTextColor),
+                  icon: Icon(Icons.directions_car, color: iconColor, size: 35),
                   label: Text('Тесты ПДД', style: TextStyle(color: buttonTextColor)),
                 ),
                 ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
+                    splashFactory: NoSplash.splashFactory,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
+                    surfaceTintColor:surfaceTintColor
                   ),
                   onPressed: () {},
-                  icon: Icon(Icons.schedule, color: buttonTextColor),
+                  icon: Icon(Icons.schedule, color: iconColor, size: 35),
                   label: Text('Расписание', style: TextStyle(color: buttonTextColor)),
                 ),
                 ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
+                    splashFactory: NoSplash.splashFactory,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
+                    surfaceTintColor:surfaceTintColor
                   ),
                   onPressed: () {},
-                  icon: Icon(Icons.book, color: buttonTextColor),
+                  icon: Icon(Icons.book, color: iconColor, size: 35),
                   label: Text('Уроки', style: TextStyle(color: buttonTextColor)),
                 ),
                 ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
+                    splashFactory: NoSplash.splashFactory,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
+                    surfaceTintColor:surfaceTintColor
                   ),
                   onPressed: () {
                     Navigator.push(
@@ -77,7 +89,7 @@ class HomePage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) =>  ChatPage()), // Переходим на страницу с картой
                   );
                   },
-                  icon: Icon(Icons.library_books, color: buttonTextColor),
+                  icon: Icon(Icons.library_books, color: iconColor, size: 35),
                   label: Text('Чат Бот', style: TextStyle(color: buttonTextColor)),
                 ),
               ],
@@ -96,52 +108,59 @@ class HomePage extends StatelessWidget {
                     ),
                     minimumSize: Size(180, 180),
                     maximumSize: Size(180, 180),
+                    surfaceTintColor:surfaceTintColor 
                   ),
                   onPressed: () {
                      Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) =>  BooksPage()));
                   },
-                  icon: Icon(Icons.book, color: buttonTextColor),
+                  icon: Icon(Icons.book, color: iconColor, size: 35),
                   label: Text('Книги', style: TextStyle(color: buttonTextColor)),
                 ),
                 SizedBox(width: 10),
                 ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
+                        splashFactory: NoSplash.splashFactory,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                     minimumSize: Size(180, 180),
                     maximumSize: Size(180, 180),
+                    surfaceTintColor:surfaceTintColor 
                   ),
                   onPressed: () {},
-                  icon: Icon(Icons.video_library, color: buttonTextColor),
+                  icon: Icon(Icons.video_library, color: iconColor, size: 35),
                   label: Text('Видеоуроки', style: TextStyle(color: buttonTextColor)),
                 ),
                 SizedBox(width: 10),
                 ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
+                    splashFactory: NoSplash.splashFactory,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                     minimumSize: Size(180, 180),
                     maximumSize: Size(180, 180),
+                    surfaceTintColor:surfaceTintColor
                   ),
                   onPressed: () {},
-                  icon: Icon(Icons.currency_bitcoin, color: buttonTextColor),
+                  icon: Icon(Icons.currency_bitcoin, color: iconColor, size: 35),
                   label: Text('Головоломки', style: TextStyle(color: buttonTextColor)),
                 ),
                 SizedBox(width: 10),
                 ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
+                    splashFactory: NoSplash.splashFactory,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                     minimumSize: Size(180, 180),
                     maximumSize: Size(180, 180),
+                    surfaceTintColor:surfaceTintColor
                   ),
                   onPressed: () {},
-                  icon: Icon(Icons.assessment, color: buttonTextColor),
+                  icon: Icon(Icons.assessment, color: iconColor, size: 35),
                   label: Text('Тестирование', style: TextStyle(color: buttonTextColor)),
                 ),
               ],

@@ -195,7 +195,7 @@ class ProfilePage extends StatelessWidget {
                           await prefs.remove('token');
                           Navigator.pushAndRemoveUntil(
                             context,
-                            MaterialPageRoute(builder: (context) => MyApp()),
+                            MaterialPageRoute(builder: (context) => MaterialApp()),
                             (route) => false,
                           );
                         },
