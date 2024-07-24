@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/widgets.dart';
 
 class ThemeProvider extends ChangeNotifier {
   ThemeMode themeMode = ThemeMode.system;
@@ -23,16 +24,28 @@ class MyThemes {
   static final darkTheme = ThemeData(
     scaffoldBackgroundColor: Colors.grey.shade900,
     primaryColor: Colors.grey,
+    dropdownMenuTheme: DropdownMenuThemeData(textStyle:TextStyle(color: Colors.grey)),
     textTheme: TextTheme(
-      headlineSmall: TextStyle(color: Colors.white),
+      headlineSmall: TextStyle(color: Colors.grey),
       titleSmall: TextStyle(color: Colors.green),
     ),
     colorScheme: ColorScheme.dark(),
     iconTheme: IconThemeData(color: Color.fromARGB(255, 30, 126, 78), opacity: 0.8),
+    
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      
       backgroundColor: Color.fromARGB(255, 54, 53, 53),
       selectedItemColor: Colors.green,
-      unselectedItemColor: Colors.grey,
+      unselectedItemColor: Colors.white,
+      unselectedIconTheme:IconThemeData(color: Colors.white)
+    ),
+    
+   
+    
+    switchTheme: SwitchThemeData(
+      trackColor: MaterialStateProperty.all(Colors.grey),
+           thumbColor: MaterialStateProperty.all(Color.fromARGB(255, 11, 49, 13)),
+    trackOutlineColor: MaterialStateProperty.all(Colors.green),
     ),
   );
 
@@ -49,6 +62,12 @@ class MyThemes {
       backgroundColor: Colors.white,
       selectedItemColor: Colors.green,
       unselectedItemColor: Color.fromARGB(255, 54, 53, 53),
+    ),
+        switchTheme: SwitchThemeData(
+      trackColor: MaterialStateProperty.all(Colors.white),
+      thumbColor: MaterialStateProperty.all(Colors.green),
+    trackOutlineColor: MaterialStateProperty.all(Colors.green),
+    overlayColor: MaterialStateProperty.all(Colors.green),
     ),
   );
 }

@@ -32,4 +32,5 @@ flutter:
     - assets\images\users.png
     - assets\images\cars.png
     - assets/translations/
+    - assets/icons/
     

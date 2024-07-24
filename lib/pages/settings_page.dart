@@ -49,7 +49,7 @@ Widget build(BuildContext context) {
                     _getLanguageName(value.languageCode),
                     style: TextStyle(
                       fontSize: 16,
-                      color: Colors.black,
+                      color: Colors.white,
                     ),
                   ),
                 );
