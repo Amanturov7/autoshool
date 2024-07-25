@@ -1,3 +1,4 @@
+import 'package:autoshool/auth/terms_page.dart';
 import 'package:autoshool/utils/image_selector_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
@@ -31,7 +32,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _messengerController = TextEditingController();
   final TextEditingController _preferredTimeController = TextEditingController();
-  bool _agreeToTerms = false;
+  bool _agreedToTerms = false;
 
   void _selectFrontPassportImage(File? image) {
     setState(() {
@@ -58,7 +59,7 @@ class _SignUpPageState extends State<SignUpPage> {
         _emailController.text.isEmpty ||
         _messengerController.text.isEmpty ||
         _preferredTimeController.text.isEmpty ||
-        !_agreeToTerms) {
+        !_agreedToTerms) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please fill all required fields and agree to terms')),
       );
@@ -79,7 +80,7 @@ class _SignUpPageState extends State<SignUpPage> {
     print('Email: ${_emailController.text}');
     print('Messenger: ${_messengerController.text}');
     print('Preferred Time: ${_preferredTimeController.text}');
-    print('Agree to Terms: $_agreeToTerms');
+    print('Agree to Terms: $_agreedToTerms');
 
     // Navigate to success page or show success message
     ScaffoldMessenger.of(context).showSnackBar(
@@ -96,7 +97,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sign Up'),
+        title: const Text('Заявка в автошколу'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -244,6 +245,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                         ),
                 ),
             ),
+            const SizedBox(height: 16.0),
              Text('Front Side of Passport'),
             ImageSelectorBox(
               onSelectImage: _selectFrontPassportImage,
@@ -259,21 +261,45 @@ class _SignUpPageState extends State<SignUpPage> {
             const SizedBox(height: 16.0),
             Row(
               children: [
-                Checkbox(
-                  value: _agreeToTerms,
-                  onChanged: (value) {
-                    setState(() {
-                      _agreeToTerms = value ?? false;
-                    });
-                  },
-                ),
-                Text('I agree to the terms and conditions'),
+             Checkbox(
+                      value: _agreedToTerms,
+                      onChanged: (value) {
+                        setState(() {
+                          _agreedToTerms = value!;
+                        });
+                      },
+                      
+                        activeColor: Colors.green, 
+                      materialTapTargetSize: MaterialTapTargetSize.padded,
+                      
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                    
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TermsPage(),
+                            settings: RouteSettings(name: 'TermsPage'),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        'i_agree'.tr(),
+                        style: TextStyle(
+                          color: Colors.green,
+                        ),
+                      ),
+                    ),
+                
               ],
             ),
+
+
              SizedBox(
   height: 70, // Задаем фиксированную высоту для кнопки
   child: ElevatedButton(
-    onPressed: _submitForm,
+    onPressed: _agreedToTerms ? _submitForm : null,
     child: Container(
       width: double.infinity,
       padding: EdgeInsets.all(16),
@@ -284,7 +310,7 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
     ),
     style: ElevatedButton.styleFrom(
-      backgroundColor: iconColor,
+      backgroundColor:  _agreedToTerms ? iconColor : Colors.grey,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),

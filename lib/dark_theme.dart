@@ -55,13 +55,13 @@ class MyThemes {
       headlineSmall: TextStyle(color: Color.fromARGB(255, 54, 53, 53)),
       titleSmall: TextStyle(color: Colors.green),
     ),
-    colorScheme: ColorScheme.light(),
-     textSelectionTheme: TextSelectionThemeData(
+         textSelectionTheme: TextSelectionThemeData(
       cursorColor: Colors.green,
       selectionColor: Colors.greenAccent,
       selectionHandleColor: Colors.green,
     ),
-    iconTheme: IconThemeData(color: Colors.red, opacity: 0.8),
+    colorScheme: ColorScheme.light(),
+    iconTheme: IconThemeData(color: Color.fromARGB(255,76,175,80), opacity: 0.8),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: Colors.white,
       selectedItemColor: Colors.green,

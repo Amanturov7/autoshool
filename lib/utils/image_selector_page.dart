@@ -17,9 +17,15 @@ class ImageSelectorBox extends StatefulWidget {
 }
 
 class _ImageSelectorBoxState extends State<ImageSelectorBox> {
+  
   @override
   Widget build(BuildContext context) {
+        bool isDarkTheme = Theme.of(context).brightness == Brightness.dark;
+    Color buttonTextColor = isDarkTheme ? Colors.grey : Color.fromARGB(255, 54, 53, 53);
+    Color iconColor = isDarkTheme ? Colors.green : Colors.green;
+    
     return Column(
+      
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         GestureDetector(
@@ -29,20 +35,33 @@ class _ImageSelectorBoxState extends State<ImageSelectorBox> {
           child: Container(
             height: 200,
             decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: BorderRadius.circular(30),
+                color: isDarkTheme ? Color.fromARGB(255, 54, 53, 53) : Colors.grey[300],
+                borderRadius: BorderRadius.circular(30),
+                border: Border.all(
+                  color: isDarkTheme ? Color.fromARGB(255, 54, 53, 53):Colors.grey, // Цвет границы
+                  width: 1.0,          // Ширина границы
+                ),
             ),
             child: Center(
               child: widget.imageFile != null
-                  ? Center(
-                      child: Image.file(
-                        widget.imageFile!,
-                        width: double.infinity,
-                        height: double.infinity,
-                        fit: BoxFit.cover,
-                      ),
-                    )
-                  : Icon(Icons.camera_alt),
+                  ? ClipRRect(
+              borderRadius: BorderRadius.circular(30),
+              child: Image.file(
+                widget.imageFile!,
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.cover,
+              ),
+            )
+                  : ClipRRect(
+              borderRadius: BorderRadius.circular(30),
+              child: Image.asset(
+                "assets/icons/camera.png",
+                color: iconColor,
+                width: 80,
+                height: 80,
+              ),
+            ),
             ),
           ),
         ),
