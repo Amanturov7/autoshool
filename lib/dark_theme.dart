@@ -29,7 +29,7 @@ class MyThemes {
       titleSmall: TextStyle(color: Colors.green),
     ),
     colorScheme: ColorScheme.dark(),
-    iconTheme: IconThemeData(color: Color.fromARGB(255, 30, 126, 78), opacity: 0.8),
+    iconTheme: IconThemeData(color: Color.fromARGB(255,76,175,80), opacity: 0.8),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: Color.fromARGB(255, 54, 53, 53),
       selectedItemColor: Colors.green,

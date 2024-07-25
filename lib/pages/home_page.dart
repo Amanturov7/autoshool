@@ -48,7 +48,8 @@ class HomePage extends StatelessWidget {
                     surfaceTintColor:surfaceTintColor
                   ),
                   onPressed: () {},
-                  icon: Icon(Icons.directions_car, color: iconColor, size: 35),
+                  
+                  icon: Image.asset("assets/icons/test.png",  color: iconColor, width: 45, ),
                   label: Text('Тесты ПДД', style: TextStyle(color: buttonTextColor)),
                 ),
                 ElevatedButton.icon(
@@ -60,7 +61,7 @@ class HomePage extends StatelessWidget {
                     surfaceTintColor:surfaceTintColor
                   ),
                   onPressed: () {},
-                  icon: Icon(Icons.schedule, color: iconColor, size: 35),
+                   icon: Image.asset("assets/icons/schedule.png", width: 45, ),
                   label: Text('Расписание', style: TextStyle(color: buttonTextColor)),
                 ),
                 ElevatedButton.icon(
@@ -72,7 +73,7 @@ class HomePage extends StatelessWidget {
                     surfaceTintColor:surfaceTintColor
                   ),
                   onPressed: () {},
-                  icon: Icon(Icons.book, color: iconColor, size: 35),
+                   icon: Image.asset("assets/icons/book.png", width: 45, ),
                   label: Text('Уроки', style: TextStyle(color: buttonTextColor)),
                 ),
                 ElevatedButton.icon(

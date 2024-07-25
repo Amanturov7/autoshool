@@ -156,6 +156,7 @@ class _SignUpPageState extends State<SignUpPage> {
             const SizedBox(height: 16.0),
             Text('Back Side of Passport'),
             ImageSelectorBox(
+              
               onSelectImage: _selectBackPassportImage,
               imageFile: _backPassportImage,
             ),

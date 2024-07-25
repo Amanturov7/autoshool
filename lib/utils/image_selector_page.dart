@@ -29,7 +29,7 @@ class _ImageSelectorBoxState extends State<ImageSelectorBox> {
           child: Container(
             height: 200,
             decoration: BoxDecoration(
-              color: Colors.grey[200],
+              color: Colors.grey[300],
               borderRadius: BorderRadius.circular(30),
             ),
             child: Center(
