@@ -129,8 +129,11 @@ Widget build(BuildContext context) {
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15),
+        
         child: Theme(
+          
           data: Theme.of(context).copyWith(
+            
             splashFactory: NoSplash.splashFactory,
             highlightColor: Colors.transparent,
           ),

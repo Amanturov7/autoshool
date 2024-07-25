@@ -2,6 +2,7 @@ import 'package:autoshool/utils/image_selector_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -88,6 +89,11 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
+        bool isDarkTheme = Theme.of(context).brightness == Brightness.dark;
+
+       Color buttonTextColor = isDarkTheme ? Colors.grey : Color.fromARGB(255, 54, 53, 53);
+    Color iconColor = isDarkTheme ? Colors.green : Colors.green;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sign Up'),
@@ -101,52 +107,142 @@ class _SignUpPageState extends State<SignUpPage> {
             const SizedBox(height: 16.0),
             TextFormField(
               controller: _fullNameController,
-              decoration: const InputDecoration(labelText: 'Full Name'),
+                              decoration: InputDecoration(
+                  hintText: 'login'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(15),
+                                        ),
+                ),
             ),
             const SizedBox(height: 16.0),
             TextFormField(
               controller: _birthdateController,
-              decoration: const InputDecoration(labelText: 'Birthdate'),
+                              decoration: InputDecoration(
+                  hintText: 'login'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(20),
+                                        ),
+                ),
             ),
             const SizedBox(height: 16.0),
             TextFormField(
               controller: _innController,
-              decoration: const InputDecoration(labelText: 'INN'),
+                              decoration: InputDecoration(
+                  hintText: 'login'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(20),
+                                        ),
+                ),
             ),
             const SizedBox(height: 16.0),
             TextFormField(
               controller: _addressController,
-              decoration: const InputDecoration(labelText: 'Address'),
+                              decoration: InputDecoration(
+                  hintText: 'login'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(20),
+                                        ),
+                ),
             ),
             const SizedBox(height: 16.0),
             TextFormField(
               controller: _locationController,
-              decoration: const InputDecoration(labelText: 'Location'),
+                              decoration: InputDecoration(
+                  hintText: 'login'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(20),
+                                        ),
+                ),
             ),
             const SizedBox(height: 16.0),
             TextFormField(
               controller: _educationCategoryController,
-              decoration: const InputDecoration(labelText: 'Education Category'),
+                              decoration: InputDecoration(
+                  hintText: 'login'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(20),
+                                        ),
+                ),
             ),
             const SizedBox(height: 16.0),
             TextFormField(
               controller: _phoneNumberController,
-              decoration: const InputDecoration(labelText: 'Phone Number'),
+                              decoration: InputDecoration(
+                  hintText: 'login'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(20),
+                                        ),
+                ),
             ),
             const SizedBox(height: 16.0),
             TextFormField(
               controller: _emailController,
-              decoration: const InputDecoration(labelText: 'Email'),
+                              decoration: InputDecoration(
+                  hintText: 'login'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(20),
+                                        ),
+                ),
             ),
             const SizedBox(height: 16.0),
             TextFormField(
               controller: _messengerController,
-              decoration: const InputDecoration(labelText: 'Messenger (WhatsApp/Telegram)'),
+                              decoration: InputDecoration(
+                  hintText: 'login'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(20),
+                                        ),
+                ),
             ),
             const SizedBox(height: 16.0),
             TextFormField(
               controller: _preferredTimeController,
-              decoration: const InputDecoration(labelText: 'Preferred Time for Lessons'),
+                              decoration: InputDecoration(
+                  hintText: 'login'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(20),
+                                        ),
+                ),
             ),
              Text('Front Side of Passport'),
             ImageSelectorBox(
@@ -174,11 +270,29 @@ class _SignUpPageState extends State<SignUpPage> {
                 Text('I agree to the terms and conditions'),
               ],
             ),
-            const SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: _submitForm,
-              child: const Text('Sign Up'),
-            ),
+             SizedBox(
+  height: 70, // Задаем фиксированную высоту для кнопки
+  child: ElevatedButton(
+    onPressed: _submitForm,
+    child: Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(16),
+      alignment: Alignment.center,
+      child: Text(
+        'login_in'.tr(),
+        style: TextStyle(fontSize: 20, color: Colors.white),
+      ),
+    ),
+    style: ElevatedButton.styleFrom(
+      backgroundColor: iconColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      minimumSize: Size(double.infinity, 70),
+    ),
+  ),
+             )
+             
           ],
         ),
       ),

@@ -23,6 +23,11 @@ class MyThemes {
   static final darkTheme = ThemeData(
     scaffoldBackgroundColor: Colors.grey.shade900,
     primaryColor: Colors.grey,
+     textSelectionTheme: TextSelectionThemeData(
+      cursorColor: Colors.green,
+      selectionColor: Colors.greenAccent,
+      selectionHandleColor: Colors.green,
+    ),
     dropdownMenuTheme: DropdownMenuThemeData(textStyle: TextStyle(color: Colors.grey)),
     textTheme: TextTheme(
       headlineSmall: TextStyle(color: Colors.grey),
@@ -51,6 +56,11 @@ class MyThemes {
       titleSmall: TextStyle(color: Colors.green),
     ),
     colorScheme: ColorScheme.light(),
+     textSelectionTheme: TextSelectionThemeData(
+      cursorColor: Colors.green,
+      selectionColor: Colors.greenAccent,
+      selectionHandleColor: Colors.green,
+    ),
     iconTheme: IconThemeData(color: Colors.red, opacity: 0.8),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: Colors.white,
