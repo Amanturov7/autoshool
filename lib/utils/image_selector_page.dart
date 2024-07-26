@@ -74,7 +74,14 @@ class _ImageSelectorBoxState extends State<ImageSelectorBox> {
                 onPressed: () {
                   widget.onSelectImage(null);
                 },
-                child: Text('Отменить'),
+                  style: ElevatedButton.styleFrom(
+                  
+      backgroundColor:  iconColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+    ),
+                child: Text('Отменить',style: TextStyle(fontSize: 15, color: Colors.white)),
               ),
               ElevatedButton(
                 onPressed: () {
@@ -85,7 +92,14 @@ class _ImageSelectorBoxState extends State<ImageSelectorBox> {
                     ),
                   );
                 },
-                child: Text('Предпросмотр'),
+                style: ElevatedButton.styleFrom(
+                  
+              backgroundColor:  iconColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+                child: Text('Предпросмотр',style: TextStyle(fontSize: 15, color: Colors.white)),
               ),
             ],
           ),

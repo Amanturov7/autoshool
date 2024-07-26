@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:autoshool/constants.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class CreateGroupPage extends StatefulWidget {
   @override
@@ -69,6 +70,10 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkTheme = Theme.of(context).brightness == Brightness.dark;
+
+       Color buttonTextColor = isDarkTheme ? Colors.grey : Color.fromARGB(255, 54, 53, 53);
+    Color iconColor = isDarkTheme ? Colors.green : Colors.green;
     return Scaffold(
       appBar: AppBar(
         title: Text('Создание группы'),
@@ -80,7 +85,16 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
           child: ListView(
             children: [
               TextFormField(
-                decoration: InputDecoration(labelText: 'Name'),
+                 decoration: InputDecoration(
+                  hintText: 'login'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(20),
+                                        ),
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a name';
@@ -91,6 +105,8 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                   _name = value!;
                 },
               ),
+                            const SizedBox(height: 16.0),
+
               FutureBuilder<List<dynamic>>(
                 future: _typeStudyFuture,
                 builder: (context, snapshot) {
@@ -102,7 +118,16 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                     return Text('No type study data available');
                   } else {
                     return DropdownButtonFormField<int>(
-                      decoration: InputDecoration(labelText: 'Type Study'),
+                       decoration: InputDecoration(
+                  hintText: 'login'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(20),
+                                        ),
+                ),
                       items: snapshot.data!
                           .map<DropdownMenuItem<int>>((typeStudy) {
                         return DropdownMenuItem<int>(
@@ -125,6 +150,8 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                   }
                 },
               ),
+                            const SizedBox(height: 16.0),
+
               FutureBuilder<List<dynamic>>(
                 future: _categoryFuture,
                 builder: (context, snapshot) {
@@ -136,7 +163,16 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                     return Text('No category data available');
                   } else {
                     return DropdownButtonFormField<int>(
-                      decoration: InputDecoration(labelText: 'Category'),
+                       decoration: InputDecoration(
+                  hintText: 'login'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(20),
+                                        ),
+                ),
                       items: snapshot.data!
                           .map<DropdownMenuItem<int>>((category) {
                         return DropdownMenuItem<int>(
@@ -159,11 +195,30 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                   }
                 },
               ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _submitForm,
-                child: Text('Create Group'),
-              ),
+                            const SizedBox(height: 16.0),
+
+    SizedBox(
+  height: 70, // Задаем фиксированную высоту для кнопки
+  child: ElevatedButton(
+    onPressed: _submitForm,
+    child: Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(16),
+      alignment: Alignment.center,
+      child: Text(
+        'login_in'.tr(),
+        style: TextStyle(fontSize: 20, color: Colors.white),
+      ),
+    ),
+    style: ElevatedButton.styleFrom(
+      backgroundColor:  iconColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      minimumSize: Size(double.infinity, 70),
+    ),
+  ),
+             )
             ],
           ),
         ),

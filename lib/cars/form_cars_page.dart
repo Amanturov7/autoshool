@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:autoshool/constants.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class CreateCarPage extends StatefulWidget {
   @override
@@ -27,7 +28,7 @@ class _CreateCarPageState extends State<CreateCarPage> {
   }
 
   Future<List<dynamic>> fetchEmployees() async {
-    final response = await http.get(Uri.parse('${Constants.baseUrl}/rest/employees'));
+    final response = await http.get(Uri.parse('${Constants.baseUrl}/rest/employee/all'));
     if (response.statusCode == 200) {
       return jsonDecode(response.body) ?? [];
     } else {
@@ -66,6 +67,10 @@ class _CreateCarPageState extends State<CreateCarPage> {
 
   @override
   Widget build(BuildContext context) {
+          bool isDarkTheme = Theme.of(context).brightness == Brightness.dark;
+
+       Color buttonTextColor = isDarkTheme ? Colors.grey : Color.fromARGB(255, 54, 53, 53);
+    Color iconColor = isDarkTheme ? Colors.green : Colors.green;
     return Scaffold(
       appBar: AppBar(
         title: Text('Создание машины'),
@@ -76,8 +81,18 @@ class _CreateCarPageState extends State<CreateCarPage> {
           key: _formKey,
           child: ListView(
             children: [
+              
               TextFormField(
-                decoration: InputDecoration(labelText: 'Name'),
+                decoration: InputDecoration(
+                  hintText: 'login'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(20),
+                                        ),
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter the name';
@@ -88,8 +103,18 @@ class _CreateCarPageState extends State<CreateCarPage> {
                   _name = value!;
                 },
               ),
+              const SizedBox(height: 16.0),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Model'),
+                decoration: InputDecoration(
+                  hintText: 'login'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(20),
+                                        ),
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter the model';
@@ -100,20 +125,41 @@ class _CreateCarPageState extends State<CreateCarPage> {
                   _model = value!;
                 },
               ),
+              const SizedBox(height: 16.0),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Color'),
+                decoration: InputDecoration(
+                  hintText: 'login'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(20),
+                                        ),
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter the color';
                   }
                   return null;
                 },
+                
                 onSaved: (value) {
                   _color = value!;
                 },
               ),
+              const SizedBox(height: 16.0),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Engine'),
+                decoration: InputDecoration(
+                  hintText: 'login'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(20),
+                                        ),
+                ),
                 keyboardType: TextInputType.number,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -125,8 +171,18 @@ class _CreateCarPageState extends State<CreateCarPage> {
                   _engine = double.parse(value!);
                 },
               ),
+              const SizedBox(height: 16.0),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Year'),
+                decoration: InputDecoration(
+                  hintText: 'login'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(20),
+                                        ),
+                ),
                 keyboardType: TextInputType.number,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -138,8 +194,18 @@ class _CreateCarPageState extends State<CreateCarPage> {
                   _year = int.parse(value!);
                 },
               ),
+              const SizedBox(height: 16.0),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Difficulty Level'),
+                decoration: InputDecoration(
+                  hintText: 'login'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(20),
+                                        ),
+                ),
                 keyboardType: TextInputType.number,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -151,6 +217,7 @@ class _CreateCarPageState extends State<CreateCarPage> {
                   _difficultyLevel = int.parse(value!);
                 },
               ),
+              const SizedBox(height: 16.0),
               FutureBuilder<List<dynamic>>(
                 future: _employeeFuture,
                 builder: (context, snapshot) {
@@ -185,11 +252,30 @@ class _CreateCarPageState extends State<CreateCarPage> {
                   }
                 },
               ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _submitForm,
-                child: Text('Create Car'),
-              ),
+                            const SizedBox(height: 16.0),
+
+    SizedBox(
+  height: 70, // Задаем фиксированную высоту для кнопки
+  child: ElevatedButton(
+    onPressed:  _submitForm ,
+    child: Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(16),
+      alignment: Alignment.center,
+      child: Text(
+        'login_in'.tr(),
+        style: TextStyle(fontSize: 20, color: Colors.white),
+      ),
+    ),
+    style: ElevatedButton.styleFrom(
+      backgroundColor:  iconColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      minimumSize: Size(double.infinity, 70),
+    ),
+  ),
+             )
             ],
           ),
         ),

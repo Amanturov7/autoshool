@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:autoshool/constants.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class CreateLessonPage extends StatefulWidget {
   @override
@@ -80,6 +81,10 @@ class _CreateLessonPageState extends State<CreateLessonPage> {
 
   @override
   Widget build(BuildContext context) {
+        bool isDarkTheme = Theme.of(context).brightness == Brightness.dark;
+
+       Color buttonTextColor = isDarkTheme ? Colors.grey : Color.fromARGB(255, 54, 53, 53);
+    Color iconColor = isDarkTheme ? Colors.green : Colors.green;
     return Scaffold(
       appBar: AppBar(title: Text('Create Lesson')),
       body: Padding(
@@ -89,7 +94,16 @@ class _CreateLessonPageState extends State<CreateLessonPage> {
           child: ListView(
             children: [
               TextFormField(
-                decoration: InputDecoration(labelText: 'Name'),
+                decoration: InputDecoration(
+                  hintText: 'login'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(20),
+                                        ),
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a name';
@@ -100,12 +114,23 @@ class _CreateLessonPageState extends State<CreateLessonPage> {
                   _name = value!;
                 },
               ),
+              const SizedBox(height: 16.0),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Description'),
+                decoration: InputDecoration(
+                  hintText: 'login'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(20),
+                                        ),
+                ),
                 onSaved: (value) {
                   _description = value!;
                 },
               ),
+              const SizedBox(height: 16.0),
               FutureBuilder<List<dynamic>>(
                 future: _groupsFuture,
                 builder: (context, snapshot) {
@@ -117,7 +142,16 @@ class _CreateLessonPageState extends State<CreateLessonPage> {
                     return Text('No groups available');
                   } else {
                     return DropdownButtonFormField<int>(
-                      decoration: InputDecoration(labelText: 'Group'),
+                      decoration: InputDecoration(
+                  hintText: 'login'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(20),
+                                        ),
+                ),
                       items: snapshot.data!
                           .map<DropdownMenuItem<int>>((group) {
                         return DropdownMenuItem<int>(
@@ -140,6 +174,7 @@ class _CreateLessonPageState extends State<CreateLessonPage> {
                   }
                 },
               ),
+              const SizedBox(height: 16.0),
               FutureBuilder<List<dynamic>>(
                 future: _lessonTypesFuture,
                 builder: (context, snapshot) {
@@ -151,7 +186,16 @@ class _CreateLessonPageState extends State<CreateLessonPage> {
                     return Text('No lesson types available');
                   } else {
                     return DropdownButtonFormField<int>(
-                      decoration: InputDecoration(labelText: 'Lesson Type'),
+                      decoration: InputDecoration(
+                  hintText: 'login'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(20),
+                                        ),
+                ),
                       items: snapshot.data!
                           .map<DropdownMenuItem<int>>((lessonType) {
                         return DropdownMenuItem<int>(
@@ -174,8 +218,18 @@ class _CreateLessonPageState extends State<CreateLessonPage> {
                   }
                 },
               ),
+              const SizedBox(height: 16.0),
               DropdownButtonFormField<int>(
-                decoration: InputDecoration(labelText: 'Time Remain'),
+                decoration: InputDecoration(
+                  hintText: 'login'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(20),
+                                        ),
+                ),
                 value: _selectedDuration,
                 items: _durations.map<DropdownMenuItem<int>>((int duration) {
                   return DropdownMenuItem<int>(
@@ -205,10 +259,28 @@ class _CreateLessonPageState extends State<CreateLessonPage> {
               //   },
               // ),
               SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _submitForm,
-                child: Text('Create Lesson'),
-              ),
+    SizedBox(
+  height: 70, // Задаем фиксированную высоту для кнопки
+  child: ElevatedButton(
+    onPressed:  _submitForm ,
+    child: Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(16),
+      alignment: Alignment.center,
+      child: Text(
+        'login_in'.tr(),
+        style: TextStyle(fontSize: 20, color: Colors.white),
+      ),
+    ),
+    style: ElevatedButton.styleFrom(
+      backgroundColor:  iconColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      minimumSize: Size(double.infinity, 70),
+    ),
+  ),
+             )
             ],
           ),
         ),

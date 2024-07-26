@@ -25,7 +25,7 @@ class MyThemes {
     primaryColor: Colors.grey,
      textSelectionTheme: TextSelectionThemeData(
       cursorColor: Colors.green,
-      selectionColor: Colors.greenAccent,
+      selectionColor: Color.fromARGB(255, 62, 94, 36),
       selectionHandleColor: Colors.green,
     ),
     dropdownMenuTheme: DropdownMenuThemeData(textStyle: TextStyle(color: Colors.grey)),
