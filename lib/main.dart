@@ -94,7 +94,11 @@ class _MyHomePageState extends State<MyHomePage> {
 Widget build(BuildContext context) {
   final headline1 = Theme.of(context).textTheme.headlineSmall;
   final headline2 = Theme.of(context).textTheme.titleSmall;
+    bool isDarkTheme = Theme.of(context).brightness == Brightness.dark;
 
+       Color navColor = isDarkTheme ?  const Color.fromARGB(255, 68, 67, 67).withOpacity(0.1):Colors.grey.withOpacity(0.5);
+       Color buttonTextColor = isDarkTheme ? Colors.grey : Color.fromARGB(255, 54, 53, 53);
+    Color iconColor = isDarkTheme ? Colors.green : Colors.green;
   return Scaffold(
     appBar: AppBar(
       actions: [
@@ -121,9 +125,11 @@ Widget build(BuildContext context) {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            blurRadius: 10,
-            color: Color.fromARGB(255, 104, 103, 103),
-            spreadRadius: 0.3
+         spreadRadius: 0.1, // Распространение тени
+                        blurRadius: 15, // Размытие тени
+                        offset: Offset(0.1, 0.1), 
+                        color: navColor, // Цвет и прозрачность тени
+
           ),
         ],
       ),
