@@ -38,9 +38,11 @@ class MyThemes {
       textStyle: TextStyle(color: Colors.grey),
     ),
     textTheme: TextTheme(
-      headlineSmall: TextStyle(color: Colors.grey, fontSize: 20),
+      titleLarge: TextStyle(color: Colors.grey, fontSize: 20),
       titleSmall: TextStyle(color: Colors.green, fontSize: 16),
-      displayLarge: TextStyle(color: Colors.grey[300], fontSize: 16),
+      headlineSmall: TextStyle(color: Colors.grey, fontSize: 20),
+      bodyMedium: TextStyle(color: Colors.green, fontSize: 16),
+      bodyLarge: TextStyle(color: Colors.grey[300], fontSize: 16),
       displayMedium: TextStyle(color: Colors.grey[400], fontSize: 14),
     ),
     colorScheme: ColorScheme.dark(
@@ -86,11 +88,10 @@ class MyThemes {
       textStyle: TextStyle(color: Color.fromARGB(255, 54, 53, 53)),
     ),
     textTheme: TextTheme(
-      headlineSmall:
+      titleLarge:
           TextStyle(color: Color.fromARGB(255, 54, 53, 53), fontSize: 20),
-      titleSmall: TextStyle(color: Colors.green, fontSize: 16),
-      displayLarge: TextStyle(color: Colors.black87, fontSize: 16),
-      displayMedium: TextStyle(color: Colors.black54, fontSize: 14),
+      bodyMedium: TextStyle(color: Colors.green, fontSize: 16),
+      bodyLarge: TextStyle(color: Colors.black87, fontSize: 16),
     ),
     colorScheme: ColorScheme.light(
       primary: Colors.green,
