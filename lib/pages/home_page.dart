@@ -2,6 +2,7 @@ import 'package:autoshool/cars/detailed_view_car_page.dart';
 import 'package:autoshool/group/detailed_view_group_page.dart';
 import 'package:autoshool/home/books_page.dart';
 import 'package:autoshool/lessons/detailed_view_lesson_page.dart';
+import 'package:autoshool/schedule_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -91,7 +92,12 @@ class HomePage extends StatelessWidget {
                     elevation: 5,
                     shadowColor: buttonShadowColor,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SchedulePage()),
+                    );
+                  },
                   icon: Image.asset(
                     "assets/icons/schedule.png",
                     width: 45,
