@@ -37,34 +37,31 @@ class _LoginPageState extends State<LoginPage> {
 
         await _saveAccessToken(accessToken);
         await _saveToken(token);
-        
+
         Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => MyApp()),
           (route) => false,
         );
       } else {
-
-
-     showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text(response.statusCode.toString()),
-            content: Text(response.body),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text(response.statusCode.toString()),
+              content: Text(response.body),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
         print('Failed to login: ${response.statusCode}');
-
       }
     }
   }
@@ -81,9 +78,18 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkTheme = Theme.of(context).brightness == Brightness.dark;
+
+    Color buttonTextColor =
+        isDarkTheme ? Colors.grey : Color.fromARGB(255, 54, 53, 53);
+    Color iconColor = isDarkTheme ? Colors.green : Colors.green;
     return Scaffold(
       appBar: AppBar(
         title: Text('sign_in'.tr()),
+        shape: Border(
+            bottom: BorderSide(
+                color: isDarkTheme ? Colors.grey[700]! : Colors.grey[300]!,
+                width: 1)),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -103,15 +109,14 @@ class _LoginPageState extends State<LoginPage> {
                 decoration: InputDecoration(
                   hintText: 'login'.tr(),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30.0),
+                    borderRadius: BorderRadius.circular(20),
                   ),
-                         focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(color: Color(0xFF3BB5E9)), 
-                                            borderRadius: BorderRadius.circular(30.0),
-                                        ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: iconColor),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                 ),
               ),
-
               SizedBox(height: 16),
               TextFormField(
                 controller: _passwordController,
@@ -123,69 +128,61 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 obscureText: true,
                 decoration: InputDecoration(
-                  hintText: 'password'.tr(),
+                  hintText: 'login'.tr(),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30.0),
+                    borderRadius: BorderRadius.circular(20),
                   ),
-                         focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(color: Color(0xFF3BB5E9)), 
-                                            borderRadius: BorderRadius.circular(30.0),
-                                        ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: iconColor),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                 ),
               ),
               SizedBox(height: 20),
-
-             SizedBox(
-  height: 70, // Задаем фиксированную высоту для кнопки
-  child: ElevatedButton(
-    onPressed: _login,
-    child: Container(
-      width: double.infinity,
-      padding: EdgeInsets.all(16),
-      alignment: Alignment.center,
-      child: Text(
-        'login_in'.tr(),
-        style: TextStyle(fontSize: 20, color: Colors.white),
-      ),
-    ),
-    style: ElevatedButton.styleFrom(
-      backgroundColor: Color(0xFF3BB5E9),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30),
-      ),
-      minimumSize: Size(double.infinity, 70),
-    ),
-  ),
-),
-
-
-                  SizedBox(width: 10),
-              Row(
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      // Действия при нажатии на кнопку "Забыли пароль?"
-                    },
+              SizedBox(
+                height: 70, // Задаем фиксированную высоту для кнопки
+                child: ElevatedButton(
+                  onPressed: _login,
+                  child: Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.all(16),
+                    alignment: Alignment.center,
                     child: Text(
-                      'forgot_password'.tr(),
-                      style: TextStyle(color: Color(0xFF3BB5E9)),
+                      'login_in'.tr(),
+                      style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   ),
-
-                  SizedBox(width: 10),
-
-                  TextButton(
-                    onPressed: () {
-                      // Действия при нажатии на кнопку "Регистрация"
-                    },
-                    child: Text(
-                      'register'.tr(),
-                      style: TextStyle(color: Color(0xFF3BB5E9)),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: iconColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
                     ),
+                    minimumSize: Size(double.infinity, 70),
                   ),
-                ]
-            )
-
+                ),
+              ),
+              SizedBox(width: 10),
+              Row(children: [
+                TextButton(
+                  onPressed: () {
+                    // Действия при нажатии на кнопку "Забыли пароль?"
+                  },
+                  child: Text(
+                    'forgot_password'.tr(),
+                    style: TextStyle(color: iconColor),
+                  ),
+                ),
+                SizedBox(width: 10),
+                TextButton(
+                  onPressed: () {
+                    // Действия при нажатии на кнопку "Регистрация"
+                  },
+                  child: Text(
+                    'register'.tr(),
+                    style: TextStyle(color: iconColor),
+                  ),
+                ),
+              ])
             ],
           ),
         ),

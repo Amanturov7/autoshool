@@ -19,6 +19,7 @@ dependencies:
   search_page: ^2.3.0
   hexcolor: ^3.0.1
   provider: ^6.1.2
+  day_night_switch: ^1.0.4
 
 dev_dependencies:
   flutter_test:
@@ -28,9 +29,9 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets\images\groups.png
-    - assets\images\users.png
-    - assets\images\cars.png
+    - assets/images/groups.png
+    - assets/images/users.png
+    - assets/images/cars.png
     - assets/translations/
     - assets/icons/
     

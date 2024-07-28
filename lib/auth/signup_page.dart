@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'terms_page.dart'; 
+import 'terms_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:autoshool/main.dart';
 import 'package:autoshool/constants.dart';
-            import 'package:flutter/services.dart';
+import 'package:flutter/services.dart';
 
 class SignupPage extends StatefulWidget {
   @override
@@ -23,76 +23,82 @@ class _SignupPageState extends State<SignupPage> {
   final TextEditingController _passportController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
 
-Future<void> _signup() async {
-  if (_formKey.currentState!.validate() && _agreedToTerms) {
-    final String apiUrl = '${Constants.baseUrl}/rest/auth/signup';
-    final response = await http.post(
-      Uri.parse(apiUrl),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'login': _loginController.text,
-        'password': _passwordController.text,
-        'address': _addressController.text,
-        'inn': _innController.text,
-        'passport': _passportController.text,
-        'phone': _phoneController.text,
-      }),
-    );
-
-    if (response.statusCode == 201) {
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => MyApp()),
-        (route) => false,
+  Future<void> _signup() async {
+    if (_formKey.currentState!.validate() && _agreedToTerms) {
+      final String apiUrl = '${Constants.baseUrl}/rest/auth/signup';
+      final response = await http.post(
+        Uri.parse(apiUrl),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'login': _loginController.text,
+          'password': _passwordController.text,
+          'address': _addressController.text,
+          'inn': _innController.text,
+          'passport': _passportController.text,
+          'phone': _phoneController.text,
+        }),
       );
-    } else {
-      // Log the response body for debugging purposes
-      print('Response body: ${response.body}');
 
-      // Parse and show error messages
-      final responseData = jsonDecode(response.body);
-      String errorMessage = '';
+      if (response.statusCode == 201) {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => MyApp()),
+          (route) => false,
+        );
+      } else {
+        // Log the response body for debugging purposes
+        print('Response body: ${response.body}');
 
-      if (responseData is Map<String, dynamic> && responseData.containsKey('errors')) {
-        final errors = responseData['errors'];
-        if (errors is List) {
-          for (var error in errors) {
-            if (error is Map<String, dynamic> && error.containsKey('defaultMessage')) {
-              errorMessage += '${error['defaultMessage']}\n';
+        // Parse and show error messages
+        final responseData = jsonDecode(response.body);
+        String errorMessage = '';
+
+        if (responseData is Map<String, dynamic> &&
+            responseData.containsKey('errors')) {
+          final errors = responseData['errors'];
+          if (errors is List) {
+            for (var error in errors) {
+              if (error is Map<String, dynamic> &&
+                  error.containsKey('defaultMessage')) {
+                errorMessage += '${error['defaultMessage']}\n';
+              }
             }
           }
+        } else {
+          errorMessage = 'An unexpected error occurred.';
         }
-      } else {
-        errorMessage = 'An unexpected error occurred.';
-      }
 
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Error: ${response.statusCode}'),
-            content: Text(errorMessage),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Error: ${response.statusCode}'),
+              content: Text(errorMessage),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
+      }
     }
   }
-}
-
-
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkTheme = Theme.of(context).brightness == Brightness.dark;
+
+    Color buttonTextColor =
+        isDarkTheme ? Colors.grey : Color.fromARGB(255, 54, 53, 53);
+    Color iconColor = isDarkTheme ? Colors.green : Colors.green;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('register'.tr()),
@@ -116,40 +122,39 @@ Future<void> _signup() async {
                   decoration: InputDecoration(
                     hintText: 'login'.tr(),
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30.0),
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                           focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(color: Color(0xFF3BB5E9)), 
-                                            borderRadius: BorderRadius.circular(30.0),
-                                        ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: iconColor),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                   ),
                 ),
                 SizedBox(height: 16),
-             TextFormField(
-  controller: _passwordController,
-  validator: (value) {
-    if (value == null || value.isEmpty) {
-      return 'Пожалуйста, введите пароль';
-    } else if (value.length < 8) {
-      return 'Пароль должен содержать не менее 8 символов';
-    } else if (!value.contains(RegExp(r'[A-Z]'))) {
-      return 'Пароль должен содержать хотя бы одну заглавную букву';
-    }
-    return null;
-  },
-  obscureText: true,
-  decoration: InputDecoration(
-    hintText: 'password'.tr(),
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(30.0),
-    ),
-    focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Color(0xFF3BB5E9)),
-      borderRadius: BorderRadius.circular(30.0),
-    ),
-  ),
-),
-
+                TextFormField(
+                  controller: _passwordController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Пожалуйста, введите пароль';
+                    } else if (value.length < 8) {
+                      return 'Пароль должен содержать не менее 8 символов';
+                    } else if (!value.contains(RegExp(r'[A-Z]'))) {
+                      return 'Пароль должен содержать хотя бы одну заглавную букву';
+                    }
+                    return null;
+                  },
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    hintText: 'login'.tr(),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: iconColor),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                ),
                 SizedBox(height: 16),
                 TextFormField(
                   controller: _addressController,
@@ -160,39 +165,39 @@ Future<void> _signup() async {
                     return null;
                   },
                   decoration: InputDecoration(
-                    hintText: 'address'.tr(),
+                    hintText: 'login'.tr(),
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30.0),
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                           focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(color: Color(0xFF3BB5E9)), 
-                                            borderRadius: BorderRadius.circular(30.0),
-                                        ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: iconColor),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                   ),
                 ),
                 SizedBox(height: 16),
-           TextFormField(
-  controller: _innController,
-  validator: (value) {
-    if (value == null || value.isEmpty) {
-      return 'Пожалуйста, введите ИНН';
-    } else if (value.length != 14 || !RegExp(r'^\d{14}$').hasMatch(value)) {
-      return 'ИНН должен состоять из 14 цифр';
-    }
-    return null;
-  },
-  decoration: InputDecoration(
-    hintText: 'inn'.tr(),
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(30.0),
-    ),
-    focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Color(0xFF3BB5E9)),
-      borderRadius: BorderRadius.circular(30.0),
-    ),
-  ),
-),
-
+                TextFormField(
+                  controller: _innController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Пожалуйста, введите ИНН';
+                    } else if (value.length != 14 ||
+                        !RegExp(r'^\d{14}$').hasMatch(value)) {
+                      return 'ИНН должен состоять из 14 цифр';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    hintText: 'login'.tr(),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: iconColor),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                ),
                 SizedBox(height: 16),
                 TextFormField(
                   controller: _passportController,
@@ -203,46 +208,44 @@ Future<void> _signup() async {
                     return null;
                   },
                   decoration: InputDecoration(
-                    hintText: 'passport_serial'.tr(),
+                    hintText: 'login'.tr(),
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30.0),
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                           focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(color: Color(0xFF3BB5E9)), 
-                                            borderRadius: BorderRadius.circular(30.0),
-                                        ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: iconColor),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                   ),
                 ),
                 SizedBox(height: 16),
-
-TextFormField(
-  controller: _phoneController,
-  validator: (value) {
-    if (value == null || value.isEmpty) {
-      return 'Пожалуйста, введите номер телефона';
-    } else if (!RegExp(r'^\d+$').hasMatch(value)) {
-      return 'Номер телефона должен содержать только цифры';
-    }
-    return null;
-  },
-  decoration: InputDecoration(
-    hintText: 'phone_number'.tr(),
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(30.0),
-    ),
-    focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Color(0xFF3BB5E9)),
-      borderRadius: BorderRadius.circular(30.0),
-    ),
-  ),
-  inputFormatters: [
-    FilteringTextInputFormatter.digitsOnly,
-  ],
-),
-
+                TextFormField(
+                  controller: _phoneController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Пожалуйста, введите номер телефона';
+                    } else if (!RegExp(r'^\d+$').hasMatch(value)) {
+                      return 'Номер телефона должен содержать только цифры';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    hintText: 'login'.tr(),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: iconColor),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                  ],
+                ),
                 SizedBox(height: 16),
                 Row(
-                  children: <Widget>[
+                  children: [
                     Checkbox(
                       value: _agreedToTerms,
                       onChanged: (value) {
@@ -250,12 +253,11 @@ TextFormField(
                           _agreedToTerms = value!;
                         });
                       },
-                        activeColor: Color(0xFF3BB5E9) , 
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      activeColor: Colors.green,
+                      materialTapTargetSize: MaterialTapTargetSize.padded,
                     ),
                     GestureDetector(
                       onTap: () {
-                    
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -267,27 +269,35 @@ TextFormField(
                       child: Text(
                         'i_agree'.tr(),
                         style: TextStyle(
-                          color: Colors.blue,
+                          color: Colors.green,
                         ),
                       ),
                     ),
                   ],
                 ),
                 SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: _agreedToTerms ? _signup : null,
-                  child: Text(
-                    'to_register'.tr(),
-                    style: TextStyle(fontSize: 20, color: Colors.white),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: _agreedToTerms ? Color(0xFF3BB5E9) : Colors.grey,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
+                SizedBox(
+                  height: 70, // Задаем фиксированную высоту для кнопки
+                  child: ElevatedButton(
+                    onPressed: _agreedToTerms ? _signup : null,
+                    child: Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.all(16),
+                      alignment: Alignment.center,
+                      child: Text(
+                        'login_in'.tr(),
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      ),
                     ),
-                    minimumSize: Size(double.infinity, 70),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: _agreedToTerms ? iconColor : Colors.grey,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      minimumSize: Size(double.infinity, 70),
+                    ),
                   ),
-                ),
+                )
               ],
             ),
           ),
