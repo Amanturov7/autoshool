@@ -100,6 +100,8 @@ class _MyHomePageState extends State<MyHomePage> {
         : Colors.grey.withOpacity(0.5);
     final buttonTextColor =
         isDarkTheme ? Colors.grey.shade300 : Color.fromARGB(255, 54, 53, 53);
+            final borderColor =
+        isDarkTheme ?  Color.fromARGB(255, 0, 0, 0) : const Color.fromARGB(255, 85, 82, 82);
 
     return Scaffold(
 appBar: AppBar(
@@ -108,10 +110,28 @@ appBar: AppBar(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              CircleAvatar(
-                radius: 22,
-                backgroundImage: AssetImage('assets/images/groups.png'),
-              ),
+              Container(
+             width: 50.0,
+             height: 50.0,
+             decoration: BoxDecoration(
+               color: const Color(0xff7c94b6),
+               image: DecorationImage(
+                 image:  AssetImage('assets/images/groups.png'),
+                 fit: BoxFit.cover,
+               ),
+               borderRadius: BorderRadius.all( Radius.circular(50.0)),
+               border: Border.all(
+                 color: borderColor.withOpacity(0.4),
+                 width: 0.4,
+                 
+               ),
+             ),
+           ),
+              // CircleAvatar(
+              //   radius: 22,
+                
+              //   backgroundImage: AssetImage('assets/images/groups.png'),
+              // ),
               SizedBox(width: 8),
               Text(
                 'Амантуров Э.Б', 
