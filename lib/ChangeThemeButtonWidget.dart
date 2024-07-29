@@ -9,18 +9,21 @@ class ChangeThemeButtonWidget extends StatelessWidget {
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     return SizedBox(
-      width: 50.0, // Adjusted width to fit better within the AppBar
-      child: DayNightSwitch(
-        value: themeProvider.isDarkMode, // Required parameter
-        onChanged: (value) {
-          final provider = Provider.of<ThemeProvider>(context, listen: false);
-          provider.toggleTheme(value);
-        }, // Required parameter
-        sunColor: Colors.yellow[700]!, // Customize sun color
-        moonColor: Colors.blueGrey[600]!, // Customize moon color
-        dayColor: Colors.blue[300]!, // Customize day background color
-        nightColor: Colors.grey[900]!, // Customize night background color
-        size: Size(40.0, 24.0), // Adjusted size to a more appropriate value
+      width: 100.0, // Adjusted width to fit better within the AppBar
+      child: Transform.scale(
+        scale: 0.35, // Adjust the scale factor as needed
+        child: DayNightSwitch(
+          value: themeProvider.isDarkMode,
+          onChanged: (value) {
+            final provider = Provider.of<ThemeProvider>(context, listen: false);
+            provider.toggleTheme(value);
+          },
+          sunColor: Colors.yellow[700]!,
+          moonColor: Colors.blueGrey[600]!,
+          dayColor: Colors.blue[300]!,
+          nightColor: Colors.grey[900]!,
+          size: Size(40.0, 44.0), // Size of the switch, can be adjusted
+        ),
       ),
     );
   }

@@ -102,28 +102,25 @@ class _MyHomePageState extends State<MyHomePage> {
         isDarkTheme ? Colors.grey.shade300 : Color.fromARGB(255, 54, 53, 53);
 
     return Scaffold(
-      appBar: AppBar(
+appBar: AppBar(
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-        actions: [
-          ChangeThemeButtonWidget(), // Integrated theme switcher
-        ],
         title: Center(
-          child: RichText(
-            text: TextSpan(
-              text: 'Автошкола ',
-              style: headline1?.copyWith(
-                  fontSize: 24, fontWeight: FontWeight.bold),
-              children: <TextSpan>[
-                TextSpan(
-                  text: 'Онлайн',
-                  style: headline2?.copyWith(
-                      fontSize: 24, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CircleAvatar(
+                radius: 22,
+                backgroundImage: AssetImage('assets/images/groups.png'),
+              ),
+              SizedBox(width: 8),
+              Text(
+                'Амантуров Э.Б', 
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+            ],
           ),
         ),
-        elevation: 4.0, // Subtle shadow for the app bar
+        elevation: 4.0,
       ),
       body: _screens[_currentIndex],
       bottomNavigationBar: Container(
