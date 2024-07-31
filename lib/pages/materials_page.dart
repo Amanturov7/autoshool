@@ -1,7 +1,7 @@
 import 'package:autoshool/home/books_page.dart';
-import 'package:autoshool/journal/group_page.dart';
 import 'package:autoshool/lessons/lesson_page.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class MaterialsPage extends StatelessWidget {
   const MaterialsPage({Key? key}) : super(key: key);
@@ -32,7 +32,7 @@ class MaterialsPage extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    'Уроки',
+                    'lesson'.tr(),
                     style: TextStyle(
                       fontSize: 24,
                       color: Colors.white,
@@ -70,7 +70,7 @@ class MaterialsPage extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    'Книги',
+                    'books'.tr(),
                     style: TextStyle(
                       fontSize: 24,
                       color: Colors.white,
@@ -109,7 +109,7 @@ class MaterialsPage extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    'Тесты ПДД',
+                    'tests'.tr(),
                     style: TextStyle(
                       fontSize: 24,
                       color: Colors.white,
@@ -147,7 +147,7 @@ class MaterialsPage extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    'Видеоуроки',
+                    'video_lessons'.tr(),
                     style: TextStyle(
                       fontSize: 24,
                       color: Colors.white,

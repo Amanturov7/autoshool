@@ -22,7 +22,9 @@ class _SignUpPageState extends State<SignUpPage> {
   File? _frontPassportImage;
   File? _backPassportImage;
 
-  final TextEditingController _fullNameController = TextEditingController();
+  final TextEditingController _surNameController = TextEditingController();
+    final TextEditingController _lastNameController = TextEditingController();
+      final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _birthdateController = TextEditingController();
   final TextEditingController _innController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
@@ -31,7 +33,6 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _messengerController = TextEditingController();
-  final TextEditingController _preferredTimeController = TextEditingController();
   bool _agreedToTerms = false;
 
   void _selectFrontPassportImage(File? image) {
@@ -49,7 +50,9 @@ class _SignUpPageState extends State<SignUpPage> {
   void _submitForm() {
     // Validate form inputs and submit logic
     // Example validation, adjust as per your requirements
-    if (_fullNameController.text.isEmpty ||
+    if (_firstNameController.text.isEmpty ||
+    _lastNameController.text.isEmpty ||
+    _surNameController.text.isEmpty ||
         _birthdateController.text.isEmpty ||
         _innController.text.isEmpty ||
         _addressController.text.isEmpty ||
@@ -58,7 +61,6 @@ class _SignUpPageState extends State<SignUpPage> {
         _phoneNumberController.text.isEmpty ||
         _emailController.text.isEmpty ||
         _messengerController.text.isEmpty ||
-        _preferredTimeController.text.isEmpty ||
         !_agreedToTerms) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please fill all required fields and agree to terms')),
@@ -70,7 +72,9 @@ class _SignUpPageState extends State<SignUpPage> {
     // This is where you would typically send data to a server
 
     // Print some of the entered data for demonstration
-    print('Full Name: ${_fullNameController.text}');
+    print('SurName: ${_surNameController.text}');
+    print('LastName: ${_lastNameController.text}');
+    print('FirstName: ${_firstNameController.text}');
     print('Birthdate: ${_birthdateController.text}');
     print('INN: ${_innController.text}');
     print('Address: ${_addressController.text}');
@@ -79,12 +83,11 @@ class _SignUpPageState extends State<SignUpPage> {
     print('Phone Number: ${_phoneNumberController.text}');
     print('Email: ${_emailController.text}');
     print('Messenger: ${_messengerController.text}');
-    print('Preferred Time: ${_preferredTimeController.text}');
     print('Agree to Terms: $_agreedToTerms');
 
     // Navigate to success page or show success message
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Signup successful')),
+       SnackBar(content: Text('signup_application_success'.tr())),
     );
   }
 
@@ -97,7 +100,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Заявка в автошколу'),
+        title:  Text('application_request'.tr()),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -106,10 +109,10 @@ class _SignUpPageState extends State<SignUpPage> {
           children: [
            
             const SizedBox(height: 16.0),
-            TextFormField(
-              controller: _fullNameController,
+                                    TextFormField(
+              controller: _firstNameController,
                               decoration: InputDecoration(
-                  hintText: 'login'.tr(),
+                  hintText: 'first_name'.tr(),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -119,11 +122,41 @@ class _SignUpPageState extends State<SignUpPage> {
                                         ),
                 ),
             ),
+                        const SizedBox(height: 16.0),
+
+            TextFormField(
+              controller: _surNameController,
+                              decoration: InputDecoration(
+                  hintText: 'surname'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(15),
+                                        ),
+                ),
+            ),
+                        const SizedBox(height: 16.0),
+                        TextFormField(
+              controller: _lastNameController,
+                              decoration: InputDecoration(
+                  hintText: 'last_name'.tr(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                         focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: iconColor), 
+                                            borderRadius: BorderRadius.circular(15),
+                                        ),
+                ),
+            ),
+
             const SizedBox(height: 16.0),
             TextFormField(
               controller: _birthdateController,
                               decoration: InputDecoration(
-                  hintText: 'login'.tr(),
+                  hintText: 'birthday'.tr(),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -137,7 +170,7 @@ class _SignUpPageState extends State<SignUpPage> {
             TextFormField(
               controller: _innController,
                               decoration: InputDecoration(
-                  hintText: 'login'.tr(),
+                  hintText: 'inn'.tr(),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -151,7 +184,7 @@ class _SignUpPageState extends State<SignUpPage> {
             TextFormField(
               controller: _addressController,
                               decoration: InputDecoration(
-                  hintText: 'login'.tr(),
+                  hintText: 'address'.tr(),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -165,7 +198,7 @@ class _SignUpPageState extends State<SignUpPage> {
             TextFormField(
               controller: _locationController,
                               decoration: InputDecoration(
-                  hintText: 'login'.tr(),
+                  hintText: 'location'.tr(),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -179,7 +212,7 @@ class _SignUpPageState extends State<SignUpPage> {
             TextFormField(
               controller: _educationCategoryController,
                               decoration: InputDecoration(
-                  hintText: 'login'.tr(),
+                  hintText: 'select_category_type'.tr(),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -193,7 +226,7 @@ class _SignUpPageState extends State<SignUpPage> {
             TextFormField(
               controller: _phoneNumberController,
                               decoration: InputDecoration(
-                  hintText: 'login'.tr(),
+                  hintText: 'phone_number'.tr(),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -207,7 +240,7 @@ class _SignUpPageState extends State<SignUpPage> {
             TextFormField(
               controller: _emailController,
                               decoration: InputDecoration(
-                  hintText: 'login'.tr(),
+                  hintText: 'email'.tr(),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -221,7 +254,7 @@ class _SignUpPageState extends State<SignUpPage> {
             TextFormField(
               controller: _messengerController,
                               decoration: InputDecoration(
-                  hintText: 'login'.tr(),
+                  hintText: 'Messenger'.tr(),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -232,27 +265,13 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
             ),
             const SizedBox(height: 16.0),
-            TextFormField(
-              controller: _preferredTimeController,
-                              decoration: InputDecoration(
-                  hintText: 'login'.tr(),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                         focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(color: iconColor), 
-                                            borderRadius: BorderRadius.circular(20),
-                                        ),
-                ),
-            ),
-            const SizedBox(height: 16.0),
-             Text('Front Side of Passport'),
+             Text('front_passport'.tr()),
             ImageSelectorBox(
               onSelectImage: _selectFrontPassportImage,
               imageFile: _frontPassportImage,
             ),
             const SizedBox(height: 16.0),
-            Text('Back Side of Passport'),
+            Text('back_passport'.tr()),
             ImageSelectorBox(
               
               onSelectImage: _selectBackPassportImage,
@@ -297,7 +316,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
 
              SizedBox(
-  height: 70, // Задаем фиксированную высоту для кнопки
+  height: 70, 
   child: ElevatedButton(
     onPressed: _agreedToTerms ? _submitForm : null,
     child: Container(

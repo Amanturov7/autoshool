@@ -4,6 +4,7 @@ import 'package:autoshool/home/books_page.dart';
 import 'package:autoshool/lessons/detailed_view_lesson_page.dart';
 import 'package:autoshool/schedule_page.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -39,7 +40,7 @@ class HomePage extends StatelessWidget {
               onPressed: () {},
               icon: Icon(Icons.school, color: iconColor),
               label: Text(
-                'Учебная карточка',
+                'study_card'.tr(),
                 style: TextStyle(color: buttonTextColor),
               ),
             ),
@@ -71,12 +72,12 @@ class HomePage extends StatelessWidget {
                     );
                   },
                   icon: Image.asset(
-                    "assets/icons/test.png",
-                    color: iconColor,
+                    "assets/images/cars.png",
+                    // color: iconColor,
                     width: 45,
                   ),
                   label: Text(
-                    'Тесты ПДД',
+                    'cars'.tr(),
                     style: TextStyle(color: buttonTextColor),
                   ),
                 ),
@@ -103,7 +104,7 @@ class HomePage extends StatelessWidget {
                     width: 45,
                   ),
                   label: Text(
-                    'Расписание',
+                    'schedule'.tr(),
                     style: TextStyle(color: buttonTextColor),
                   ),
                 ),
@@ -131,7 +132,7 @@ class HomePage extends StatelessWidget {
                     width: 45,
                   ),
                   label: Text(
-                    'Уроки',
+                    'lessons'.tr(),
                     style: TextStyle(color: buttonTextColor),
                   ),
                 ),
@@ -154,9 +155,9 @@ class HomePage extends StatelessWidget {
                           builder: (context) => GroupDetailPage()),
                     );
                   },
-                  icon: Icon(Icons.library_books, color: iconColor, size: 35),
+                  icon: Icon(Icons.groups, color: iconColor, size: 35),
                   label: Text(
-                    'Чат Бот',
+                    'groups'.tr(),
                     style: TextStyle(color: buttonTextColor),
                   ),
                 ),
@@ -191,7 +192,7 @@ class HomePage extends StatelessWidget {
                   },
                   icon: Icon(Icons.book, color: iconColor, size: 35),
                   label: Text(
-                    'Книги',
+                    'books'.tr(),
                     style: TextStyle(color: buttonTextColor),
                   ),
                 ),
@@ -213,7 +214,7 @@ class HomePage extends StatelessWidget {
                   onPressed: () {},
                   icon: Icon(Icons.video_library, color: iconColor, size: 35),
                   label: Text(
-                    'Видеоуроки',
+                    'video_lessons'.tr(),
                     style: TextStyle(color: buttonTextColor),
                   ),
                 ),
@@ -236,7 +237,7 @@ class HomePage extends StatelessWidget {
                   icon:
                       Icon(Icons.currency_bitcoin, color: iconColor, size: 35),
                   label: Text(
-                    'Головоломки',
+                    'puzzles'.tr(),
                     style: TextStyle(color: buttonTextColor),
                   ),
                 ),
@@ -258,7 +259,7 @@ class HomePage extends StatelessWidget {
                   onPressed: () {},
                   icon: Icon(Icons.assessment, color: iconColor, size: 35),
                   label: Text(
-                    'Тестирование',
+                    'testing'.tr(),
                     style: TextStyle(color: buttonTextColor),
                   ),
                 ),

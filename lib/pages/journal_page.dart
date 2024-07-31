@@ -3,6 +3,7 @@ import 'package:autoshool/journal/cars_page.dart';
 import 'package:autoshool/journal/group_page.dart';
 import 'package:autoshool/journal/user_page.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class JournalPage extends StatelessWidget {
   const JournalPage({Key? key}) : super(key: key);
@@ -35,7 +36,7 @@ class JournalPage extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    'Группы',
+                    'groups'.tr(),
                     style: TextStyle(
                       fontSize: 24,
                       color: TextColor,
@@ -73,7 +74,7 @@ class JournalPage extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    'Пользователи',
+                    'users'.tr(),
                     style: TextStyle(
                       fontSize: 24,
                       color: TextColor,
@@ -111,7 +112,7 @@ class JournalPage extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    'Машины',
+                    'cars'.tr(),
                     style: TextStyle(
                       fontSize: 24,
                       color: TextColor,

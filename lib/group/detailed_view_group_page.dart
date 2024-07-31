@@ -1,6 +1,7 @@
 import 'package:autoshool/dark_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class GroupDetailPage extends StatelessWidget {
   final Map<String, dynamic> group = {
@@ -41,21 +42,21 @@ class GroupDetailPage extends StatelessWidget {
           ),
           SizedBox(height: 16),
           _buildDetailCard(
-            title: 'Name',
+            title: 'title'.tr(),
             value: group['name'] ?? 'No name',
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
           ),
           _buildDetailCard(
-            title: 'Created At',
+            title: 'added'.tr(),
             value: group['createdAt']?.toString() ?? 'No creation date',
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
           ),
           _buildDetailCard(
-            title: 'Updated At',
+            title: 'updated'.tr(),
             value: group['updatedAt']?.toString() ?? 'No update date',
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,

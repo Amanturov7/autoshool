@@ -1,6 +1,7 @@
 import 'package:autoshool/dark_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class DetailedViewLessonPage extends StatelessWidget {
   final Map<String, dynamic> lesson = {
@@ -10,7 +11,6 @@ class DetailedViewLessonPage extends StatelessWidget {
     'updatedAt': DateTime.now().subtract(Duration(days: 2)).toString(),
     'timeRemain': '2 hours',
     'lessonTypeName': 'Beginner',
-    'isArchived': 'No',
   };
 
   @override
@@ -40,54 +40,48 @@ class DetailedViewLessonPage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         children: [
           _buildDetailCard(
-            title: 'Name',
+            title: 'title'.tr(),
             value: lesson['name'] ?? 'No name',
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
           ),
           _buildDetailCard(
-            title: 'Description',
+            title: 'description'.tr(),
             value: lesson['description'] ?? 'No description',
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
           ),
           _buildDetailCard(
-            title: 'Created At',
+            title: 'added'.tr(),
             value: lesson['createdAt']?.toString() ?? 'No creation date',
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
           ),
           _buildDetailCard(
-            title: 'Updated At',
+            title: 'updated'.tr(),
             value: lesson['updatedAt']?.toString() ?? 'No update date',
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
           ),
           _buildDetailCard(
-            title: 'Time Remain',
+            title: 'time_remain'.tr(),
             value: lesson['timeRemain']?.toString() ?? 'No time remain',
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
           ),
           _buildDetailCard(
-            title: 'Lesson Type',
+            title: 'lesson_type'.tr(),
             value: lesson['lessonTypeName'] ?? 'No lesson type',
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
           ),
-          _buildDetailCard(
-            title: 'Is Archived',
-            value: lesson['isArchived'] ?? 'Not archived',
-            textColor: textColor,
-            sectionTitleTextColor: sectionTitleTextColor,
-            cardBackgroundColor: cardBackgroundColor,
-          ),
+
         ],
       ),
     );

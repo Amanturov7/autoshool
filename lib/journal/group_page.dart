@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:autoshool/constants.dart';
 import 'package:search_page/search_page.dart'; // Import search_page
+import 'package:easy_localization/easy_localization.dart';
 
 class GroupsPage extends StatefulWidget {
   const GroupsPage({Key? key}) : super(key: key);
@@ -44,7 +45,7 @@ class _GroupsPageState extends State<GroupsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Groups'),
+        title:  Text('groups'.tr()),
         actions: [
           IconButton(
             icon: Icon(Icons.search),
@@ -54,7 +55,7 @@ class _GroupsPageState extends State<GroupsPage> {
                 context: context,
                 delegate: SearchPage<dynamic>(
                   items: _groups, // Pass loaded groups to items
-                  searchLabel: 'Search groups',
+                  searchLabel: 'search_groups'.tr(),
                   suggestion: Center(
                     child: Text('Search groups by name'),
                   ),
@@ -129,7 +130,7 @@ floatingActionButton: FloatingActionButton.extended(
     _createGroup();
   },
   label: Text(
-          'Создать группу',style: TextStyle(fontSize: 18,color: Colors.white),),
+          'create_group'.tr(),style: TextStyle(fontSize: 18,color: Colors.white),),
   backgroundColor: const Color.fromRGBO(82, 170, 94, 1.0),
         icon: const Icon(Icons.group_add, color: Colors.white, size: 25),
 

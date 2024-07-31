@@ -62,7 +62,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
       } else {
         // Handle error
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Failed to create group'),
+          content: Text('group_create_error'.tr()),
         ));
       }
     }
@@ -76,7 +76,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
     Color iconColor = isDarkTheme ? Colors.green : Colors.green;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Создание группы'),
+        title: Text('create_group'.tr()),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -86,7 +86,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
             children: [
               TextFormField(
                  decoration: InputDecoration(
-                  hintText: 'login'.tr(),
+                  hintText: 'title'.tr(),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -97,7 +97,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter a name';
+                    return 'Please_enter_title'.tr();
                   }
                   return null;
                 },
@@ -115,11 +115,11 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                   } else if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
                   } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                    return Text('No type study data available');
+                    return Text('no_stydy_data'.tr());
                   } else {
                     return DropdownButtonFormField<int>(
                        decoration: InputDecoration(
-                  hintText: 'login'.tr(),
+                  hintText: 'select_type_stydy'.tr(),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -142,7 +142,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                       },
                       validator: (value) {
                         if (value == null) {
-                          return 'Please select a type study';
+                          return 'Please_select_study'.tr();
                         }
                         return null;
                       },
@@ -160,11 +160,11 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                   } else if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
                   } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                    return Text('No category data available');
+                    return Text('no_category_data'.tr());
                   } else {
                     return DropdownButtonFormField<int>(
                        decoration: InputDecoration(
-                  hintText: 'login'.tr(),
+                  hintText: 'select_category'.tr(),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -187,7 +187,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                       },
                       validator: (value) {
                         if (value == null) {
-                          return 'Please select a category';
+                          return 'Please_select_category'.tr();
                         }
                         return null;
                       },

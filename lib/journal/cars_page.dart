@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:autoshool/constants.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class CarsPage extends StatelessWidget {
   const CarsPage({Key? key}) : super(key: key);
@@ -79,8 +80,8 @@ class CarsPage extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _createCar(context),
-        label: const Text(
-          'Добавить машину',
+        label:  Text(
+          'create_car'.tr(),
           style: TextStyle(fontSize: 18, color: Colors.white),
         ),
         backgroundColor: const Color.fromRGBO(82, 170, 94, 1.0),

@@ -1,6 +1,7 @@
 import 'package:autoshool/dark_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class CarDetailPage extends StatelessWidget {
   final Map<String, dynamic> car = {
@@ -46,56 +47,56 @@ class CarDetailPage extends StatelessWidget {
           ),
           SizedBox(height: 16),
           _buildDetailCard(
-            title: 'Name',
+            title: 'marka'.tr(),
             value: car['name'] ?? 'No name',
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
           ),
           _buildDetailCard(
-            title: 'Model',
+            title: 'model'.tr(),
             value: car['model'] ?? 'No model',
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
           ),
           _buildDetailCard(
-            title: 'Color',
+            title: 'color'.tr(),
             value: car['color'] ?? 'No color',
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
           ),
           _buildDetailCard(
-            title: 'Engine',
+            title: 'engine'.tr(),
             value: car['engine']?.toString() ?? 'No engine info',
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
           ),
           _buildDetailCard(
-            title: 'Year',
+            title: 'year'.tr(),
             value: car['year']?.toString() ?? 'No year info',
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
           ),
           _buildDetailCard(
-            title: 'Difficulty Level',
+            title: 'difficulty_level'.tr(),
             value: car['difficultyLevel']?.toString() ?? 'No difficulty info',
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
           ),
           _buildDetailCard(
-            title: 'Created At',
+            title: 'added'.tr(),
             value: car['createdAt']?.toString() ?? 'No creation date',
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
           ),
           _buildDetailCard(
-            title: 'Updated At',
+            title: 'updated'.tr(),
             value: car['updatedAt']?.toString() ?? 'No update date',
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ThemeProvider extends ChangeNotifier {
   bool isDarkMode = false;
@@ -219,7 +219,7 @@ class _SchedulePageState extends State<SchedulePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Расписание'),
+        title: Text('scheule'.tr()),
       ),
       body: SfCalendar(
         view: _calendarView,

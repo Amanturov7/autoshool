@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:autoshool/constants.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class UsersPage extends StatelessWidget {
   const UsersPage({Key? key}) : super(key: key);
@@ -100,8 +101,8 @@ class UsersPage extends StatelessWidget {
         onPressed: () {
           _createUser(context);
         },
-        label: const Text(
-          'Создать пользователя',
+        label:  Text(
+          'create_user'.tr(),
           style: TextStyle(fontSize: 18, color: Colors.white),
         ),
         backgroundColor: const Color.fromRGBO(82, 170, 94, 1.0),

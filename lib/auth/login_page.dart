@@ -128,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 obscureText: true,
                 decoration: InputDecoration(
-                  hintText: 'login'.tr(),
+                  hintText: 'password'.tr(),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -148,7 +148,7 @@ class _LoginPageState extends State<LoginPage> {
                     padding: EdgeInsets.all(16),
                     alignment: Alignment.center,
                     child: Text(
-                      'login_in'.tr(),
+                      'sign_in'.tr(),
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   ),

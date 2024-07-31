@@ -1,7 +1,6 @@
-import 'package:autoshool/ChangeThemeButtonWidget.dart';
 import 'package:autoshool/main.dart';
-import 'package:autoshool/pages/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:autoshool/dark_theme.dart';
@@ -10,12 +9,22 @@ import '../auth/signup_page.dart';
 import '../user_data_page.dart';
 import '../about_page.dart';
 import '../contact_page.dart';
+import 'package:easy_localization/easy_localization.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+class ProfilePage extends StatefulWidget {
+
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  Locale? _selectedLocale;
+
 
   @override
   Widget build(BuildContext context) {
+    _selectedLocale ??= context.locale;
+    
     final themeProvider = Provider.of<ThemeProvider>(context);
     bool isDarkTheme = themeProvider.isDarkMode;
     Color backgroundColor = isDarkTheme ? Colors.grey[850]! : Colors.white;
@@ -39,7 +48,7 @@ class ProfilePage extends StatelessWidget {
           return Scaffold(
             backgroundColor: backgroundColor,
             body: Center(
-              child: Text('Error'),
+              child: Text('error'.tr()),
             ),
           );
         } else if (snapshot.hasData) {
@@ -50,26 +59,35 @@ class ProfilePage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                    buildProfileToggle(
+                  buildProfileToggle(
                     context: context,
-                    text: 'Темный режим',
+                    text: 'dark_mode'.tr(),
                     isDarkTheme: isDarkTheme,
-                    
                     onPressed: () {
                       themeProvider.toggleTheme(!isDarkTheme);
                     },
-                    
                     buttonTextColor: buttonTextColor,
                     iconColor: iconColor,
                     shadowColor: shadowColor,
                     backgroundColor: buttonBackgroundColor,
                   ),
-                  const SizedBox(height: 16.0),
+                  
+                  buildDropDown(
+                    context: context,
+                    icon: Icons.person,
+
+                    onPressed: () {},
+                    buttonTextColor: buttonTextColor,
+                    iconColor: iconColor,
+                    shadowColor: shadowColor,
+                    backgroundColor: buttonBackgroundColor,
+                  ),
+                  
                   buildProfileButton(
                     context: context,
-                    text: 'Личные данные',
+                    text: 'my_details'.tr(),
                     icon: Icons.person,
-                           onPressed: () {
+                    onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => UserDataPage()),
@@ -80,12 +98,12 @@ class ProfilePage extends StatelessWidget {
                     shadowColor: shadowColor,
                     backgroundColor: buttonBackgroundColor,
                   ),
-                  const SizedBox(height: 16.0),
+                  
                   buildProfileButton(
                     context: context,
-                    text: 'Регистрация',
+                    text: 'register'.tr(),
                     icon: Icons.app_registration,
-                           onPressed: () {
+                    onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => SignupPage()),
@@ -96,12 +114,11 @@ class ProfilePage extends StatelessWidget {
                     shadowColor: shadowColor,
                     backgroundColor: buttonBackgroundColor,
                   ),
-                  const SizedBox(height: 16.0),
                   buildProfileButton(
                     context: context,
-                    text: 'Войти',
+                    text: 'sign_in'.tr(),
                     icon: Icons.login,
-                           onPressed: () {
+                    onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => LoginPage()),
@@ -112,12 +129,12 @@ class ProfilePage extends StatelessWidget {
                     shadowColor: shadowColor,
                     backgroundColor: buttonBackgroundColor,
                   ),
-                  const SizedBox(height: 16.0),
+                  
                   buildProfileButton(
                     context: context,
-                    text: 'О нас',
+                    text: 'about'.tr(),
                     icon: Icons.info,
-                           onPressed: () {
+                    onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => AboutPage()),
@@ -128,10 +145,10 @@ class ProfilePage extends StatelessWidget {
                     shadowColor: shadowColor,
                     backgroundColor: buttonBackgroundColor,
                   ),
-                  const SizedBox(height: 16.0),
+                  
                   buildProfileButton(
                     context: context,
-                    text: 'Контакты',
+                    text: 'contact'.tr(),
                     icon: Icons.contact_mail,
                     onPressed: () {
                       Navigator.push(
@@ -143,18 +160,18 @@ class ProfilePage extends StatelessWidget {
                     iconColor: iconColor,
                     shadowColor: shadowColor,
                     backgroundColor: buttonBackgroundColor,
-                  ),       
-                  const SizedBox(height: 16.0),
+                  ),
+                  
                   buildProfileButton(
                     context: context,
-                    text: 'Выйти',
+                    text: 'log_out'.tr(),
                     icon: Icons.exit_to_app,
                     onPressed: () async {
                       final prefs = await SharedPreferences.getInstance();
                       await prefs.remove('token');
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => MyApp()),
+                        MaterialPageRoute(builder: (context) => MyHomePage()),
                       );
                     },
                     buttonTextColor: buttonTextColor,
@@ -193,6 +210,7 @@ class ProfilePage extends StatelessWidget {
       height: 70,
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(10.0),
@@ -205,35 +223,28 @@ class ProfilePage extends StatelessWidget {
           ),
         ],
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            child: TextButton(
-              onPressed: onPressed ?? () {},
-              style: TextButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    text,
-                    style: TextStyle(color: buttonTextColor, fontSize: 16),
-                  ),
-                  if (icon != null)
-                    Icon(
-                      icon,
-                      color: iconColor,
-                      size: 35,
-                    ),
-                ],
-              ),
-            ),
+      child: TextButton(
+        onPressed: onPressed ?? () {},
+        style: TextButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
           ),
-        ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              text,
+              style: TextStyle(color: buttonTextColor, fontSize: 16),
+            ),
+            if (icon != null)
+              Icon(
+                icon,
+                color: iconColor,
+                size: 35,
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -251,8 +262,9 @@ class ProfilePage extends StatelessWidget {
   }) {
     return Container(
       height: 70,
- width: double.infinity,
+      width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 26, vertical: 8),
+      margin: EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(10.0),
@@ -271,7 +283,8 @@ class ProfilePage extends StatelessWidget {
         children: [
           Text(
             text,
-            style: TextStyle(color: buttonTextColor, fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                color: buttonTextColor, fontSize: 16, fontWeight: FontWeight.bold),
           ),
           Switch(
             value: isDarkTheme,
@@ -284,10 +297,104 @@ class ProfilePage extends StatelessWidget {
       ),
     );
   }
+  Widget buildDropDown({
+    required BuildContext context,
+    IconData? icon,
+    void Function()? onPressed,
+    required Color buttonTextColor,
+    required Color iconColor,
+    required Color shadowColor,
+    required Color backgroundColor,
+  }) {
+    return Container(
+      height: 70,
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(vertical: 8),
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(10.0),
+        boxShadow: [
+          BoxShadow(
+            color: shadowColor.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 3,
+            offset: Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+        Expanded(
+          child: DropdownButtonFormField<Locale>(
+            value: _selectedLocale, 
+            onChanged: (Locale? newValue) {
+              setState(() {
+                _selectedLocale = newValue!;
+                EasyLocalization.of(context)?.setLocale(newValue); 
+              });
+            },
+            items: <Locale>[
+              Locale('en', 'US'),
+              Locale('ky', 'KG'),
+              Locale('ru', 'RU'),
+            ].map<DropdownMenuItem<Locale>>((Locale value) {
+              return DropdownMenuItem<Locale>(
+                
+                
+                value: value,
+                child: 
+                   Row(
+                    children: [
+                      SizedBox(width: 8),
+                      Text(
+                        _getLanguageName(value.languageCode),
+                        style: TextStyle(
+                          fontSize: 16,
+                          
+                          color: buttonTextColor,
+                        ),
+                      ),
+                    ],
+                  ),
+            
+              );
+            }).toList(),
+            decoration: InputDecoration(
+              hintStyle: TextStyle(color: buttonTextColor),
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+              filled: true,
+              fillColor: backgroundColor,
+            ),
+            isExpanded: false,
+            itemHeight: 60,
+            icon: Icon(Icons.arrow_drop_down, color: buttonTextColor, size: 28),
+            iconSize: 24,
+            style: TextStyle(color: buttonTextColor, fontSize: 16),
+            dropdownColor: backgroundColor,
+          ),
+        ),
+        ],
+      ),
+    );
+  }
 
   Future<bool> isAuthenticated() async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
     return token != null;
+  }
+
+  String _getLanguageName(String languageCode) {
+    switch (languageCode) {
+      case 'en':
+        return 'English';
+      case 'ky':
+        return 'Кыргызча';
+      case 'ru':
+        return 'Русский';
+      default:
+        return 'Unknown';
+    }
   }
 }

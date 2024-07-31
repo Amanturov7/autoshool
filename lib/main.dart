@@ -1,5 +1,3 @@
-import 'package:autoshool/about_page.dart';
-import 'package:autoshool/registration_course_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -12,7 +10,6 @@ import 'package:autoshool/pages/profile_page.dart';
 import 'package:autoshool/profile/login_page.dart';
 import 'package:autoshool/profile/signin_page.dart';
 import 'package:autoshool/pages/settings_page.dart';
-import 'package:autoshool/ChangeThemeButtonWidget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +22,7 @@ void main() async {
         Locale('ru', 'RU'),
         Locale('ky', 'KG')
       ],
+      
       path: 'assets/translations',
       fallbackLocale: Locale('ru', 'RU'),
       startLocale: Locale('ru', 'RU'),
@@ -55,6 +53,9 @@ class MyApp extends StatelessWidget {
     precacheImage(AssetImage("assets/icons/user_selected.png"), context);
 
     return MaterialApp(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       debugShowCheckedModeBanner: false,
       themeMode: themeProvider.themeMode,
       theme: MyThemes.lightTheme,
@@ -178,7 +179,7 @@ appBar: AppBar(
                 context,
                 "assets/icons/home.png",
                 "assets/icons/home_selected.png",
-                'Главная',
+                'home'.tr(),
                 25,
                 25,
               ),
@@ -186,7 +187,7 @@ appBar: AppBar(
                 context,
                 "assets/icons/checklist.png",
                 "assets/icons/checklist_selected.png",
-                'Журнал',
+                'journal'.tr(),
                 25,
                 25,
               ),
@@ -194,7 +195,7 @@ appBar: AppBar(
                 context,
                 "assets/icons/graduate.png",
                 "assets/icons/graduate_selected.png",
-                'Материалы',
+                'materials'.tr(),
                 32,
                 32,
               ),
@@ -202,7 +203,7 @@ appBar: AppBar(
                 context,
                 "assets/icons/user.png",
                 "assets/icons/user_selected.png",
-                'Профиль',
+                'profile'.tr(),
                 25,
                 25,
               ),
@@ -218,10 +219,10 @@ appBar: AppBar(
           onPressed: () {
             Navigator.pushNamed(context, '/register-course');
           },
-          tooltip: 'Подать заявку',
+          tooltip: 'applicationd_add'.tr(),
           child: Icon(Icons.add),
           backgroundColor: const Color.fromRGBO(82, 170, 94, 1.0),
-          elevation: 0.0, // Убираем тень (по желанию)
+          elevation: 0.0, 
           shape: CircleBorder(), // Задаем круглую форму
         ),
       ),
