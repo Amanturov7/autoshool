@@ -149,11 +149,11 @@ class HomePage extends StatelessWidget {
                     shadowColor: buttonShadowColor,
                   ),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => GroupDetailPage()),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //       builder: (context) => GroupDetailPage()),
+                    // );
                   },
                   icon: Icon(Icons.groups, color: iconColor, size: 35),
                   label: Text(

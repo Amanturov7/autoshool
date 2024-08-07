@@ -1,18 +1,17 @@
-// group_detail_page.dart
-import 'package:autoshool/users/user_detailed_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:autoshool/dark_theme.dart';
+import 'package:autoshool/dark_theme.dart'; // Import your theme provider
 
-class GroupDetailPage extends StatelessWidget {
-  final Map<String, dynamic> group;
+class UserDetailPage extends StatelessWidget {
+  final Map<String, dynamic> user;
 
-  GroupDetailPage({required this.group});
+  UserDetailPage({required this.user});
 
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
+
     final backgroundColor = isDarkMode ? Colors.grey.shade900 : Colors.white;
     final textColor = isDarkMode ? Colors.grey[300] ?? Colors.grey : Colors.black87;
     final sectionTitleTextColor = isDarkMode ? Colors.grey[400] ?? Colors.grey : Colors.black54;
@@ -20,7 +19,7 @@ class GroupDetailPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Group Details'),
+        title: Text('${user['username']}'),
         elevation: 0,
         shape: Border(
           bottom: BorderSide(
@@ -34,73 +33,25 @@ class GroupDetailPage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         children: [
           _buildImageSection(
-            imagePath: group['image'],
+            imagePath: user['avatarUrl'],
             isDarkMode: isDarkMode,
           ),
           SizedBox(height: 16),
           _buildDetailCard(
-            title: 'title'.tr(),
-            value: group['name'] ?? 'No name',
+            title: 'Username'.tr(),
+            value: user['username'] ?? 'No username',
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
           ),
           _buildDetailCard(
-            title: 'type_study_name'.tr(),
-            value: group['typeStudyName']?.toString() ?? 'No type study',
+            title: 'Email'.tr(),
+            value: user['email'] ?? 'No email',
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
           ),
-          _buildDetailCard(
-            title: 'category'.tr(),
-            value: group['categoryName']?.toString() ?? 'No category',
-            textColor: textColor,
-            sectionTitleTextColor: sectionTitleTextColor,
-            cardBackgroundColor: cardBackgroundColor,
-          ),
-          _buildDetailCard(
-            title: 'employee'.tr(),
-            value: group['employeeName']?.toString() ?? 'No employee',
-            textColor: textColor,
-            sectionTitleTextColor: sectionTitleTextColor,
-            cardBackgroundColor: cardBackgroundColor,
-          ),
-          _buildDetailCard(
-            title: 'added'.tr(),
-            value: group['createdAt']?.toString() ?? 'No creation date',
-            textColor: textColor,
-            sectionTitleTextColor: sectionTitleTextColor,
-            cardBackgroundColor: cardBackgroundColor,
-          ),
-          _buildDetailCard(
-            title: 'updated'.tr(),
-            value: group['updatedAt']?.toString() ?? 'No update date',
-            textColor: textColor,
-            sectionTitleTextColor: sectionTitleTextColor,
-            cardBackgroundColor: cardBackgroundColor,
-          ),
-          SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => StudentDetailPage(
-                    group: group,
-                    users: List<dynamic>.from(group['usersDto'] ?? []), // Ensure it's a list
-                  ),
-                ),
-              );
-            },
-            child: Text('View Students'),
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-            ),
-          ),
+          // Add more details as needed
         ],
       ),
     );
@@ -112,30 +63,21 @@ class GroupDetailPage extends StatelessWidget {
   }) {
     return Container(
       width: double.infinity,
-      height: 200, // Fixed height for image
+      height: 200,
       decoration: BoxDecoration(
         color: isDarkMode ? Colors.grey.shade800 : Colors.grey.shade200,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
           color: isDarkMode ? Colors.grey.shade600 : Colors.grey.shade400,
-          width: 2, // Border size
+          width: 2,
         ),
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(12), // Border radius
+        borderRadius: BorderRadius.circular(12),
         child: imagePath != null && imagePath.isNotEmpty
             ? Image.network(
-                imagePath, // Changed to Image.network for remote images
+                imagePath,
                 fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) => Center(
-                  child: Text(
-                    'Error loading image',
-                    style: TextStyle(
-                      color: isDarkMode ? Colors.grey[300] : Colors.black54,
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
               )
             : Center(
                 child: Text(

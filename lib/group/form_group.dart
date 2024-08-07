@@ -206,7 +206,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
       padding: EdgeInsets.all(16),
       alignment: Alignment.center,
       child: Text(
-        'login_in'.tr(),
+        'create_group'.tr(),
         style: TextStyle(fontSize: 20, color: Colors.white),
       ),
     ),

@@ -1,3 +1,4 @@
+import 'package:autoshool/group/detailed_view_group_page.dart';
 import 'package:autoshool/group/form_group.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -25,19 +26,28 @@ class _GroupsPageState extends State<GroupsPage> {
 
   Future<List<dynamic>> fetchGroups() async {
     final response = await http.get(Uri.parse('${Constants.baseUrl}/rest/groups/all'));
+         final groupData = json.decode(utf8.decode(response.bodyBytes));
+
     if (response.statusCode == 200) {
-      return jsonDecode(response.body);
+      return groupData;
     } else {
       throw Exception('Failed to load groups');
     }
   }
 
   void _createGroup() {
-    // Implement logic to create a new group
-    // For example, navigate to a page where users can create a group
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => CreateGroupPage()),
+    );
+  }
+
+  void _viewGroupDetails(Map<String, dynamic> group) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => GroupDetailPage(group: group),
+      ),
     );
   }
 
@@ -45,7 +55,7 @@ class _GroupsPageState extends State<GroupsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  Text('groups'.tr()),
+        title: Text('groups'.tr()),
         actions: [
           IconButton(
             icon: Icon(Icons.search),
@@ -68,7 +78,7 @@ class _GroupsPageState extends State<GroupsPage> {
                     child: ListTile(
                       title: Text(group['name']),
                       onTap: () {
-                        // Actions when item is tapped
+                        _viewGroupDetails(group); // Navigate to detail page
                       },
                     ),
                   ),
@@ -97,24 +107,29 @@ class _GroupsPageState extends State<GroupsPage> {
 
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                    elevation: 5,
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Row(
-                        children: [
-                          CircleAvatar(
-                            radius: 40,
-                            backgroundImage: NetworkImage(avatarUrl),
-                          ),
-                          SizedBox(width: 16),
-                          Expanded(
-                            child: Text(groupName, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                          ),
-                        ],
+                  child: GestureDetector(
+                    onTap: () {
+                      _viewGroupDetails(group); // Navigate to detail page
+                    },
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      elevation: 5,
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 40,
+                              backgroundImage: NetworkImage(avatarUrl),
+                            ),
+                            SizedBox(width: 16),
+                            Expanded(
+                              child: Text(groupName, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -124,19 +139,18 @@ class _GroupsPageState extends State<GroupsPage> {
           }
         },
       ),
-floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-floatingActionButton: FloatingActionButton.extended(
-  onPressed: () {
-    _createGroup();
-  },
-  label: Text(
-          'create_group'.tr(),style: TextStyle(fontSize: 18,color: Colors.white),),
-  backgroundColor: const Color.fromRGBO(82, 170, 94, 1.0),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          _createGroup();
+        },
+        label: Text(
+          'create_group'.tr(),
+          style: TextStyle(fontSize: 18, color: Colors.white),
+        ),
+        backgroundColor: const Color.fromRGBO(82, 170, 94, 1.0),
         icon: const Icon(Icons.group_add, color: Colors.white, size: 25),
-
-),
-
+      ),
     );
   }
 }
-

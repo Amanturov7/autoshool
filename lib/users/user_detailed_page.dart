@@ -1,14 +1,15 @@
-// group_detail_page.dart
+import 'package:autoshool/users/UserDetailPage.dart';
 import 'package:autoshool/users/user_detailed_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:autoshool/dark_theme.dart';
 
-class GroupDetailPage extends StatelessWidget {
+class StudentDetailPage extends StatelessWidget {
   final Map<String, dynamic> group;
+  final List<dynamic> users;
 
-  GroupDetailPage({required this.group});
+  StudentDetailPage({required this.group, required this.users});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class GroupDetailPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Group Details'),
+        title: Text('users_of_group'.tr() +' '+ group['name']),
         elevation: 0,
         shape: Border(
           bottom: BorderSide(
@@ -31,75 +32,65 @@ class GroupDetailPage extends StatelessWidget {
       ),
       backgroundColor: backgroundColor,
       body: ListView(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(8.0),
         children: [
-          _buildImageSection(
-            imagePath: group['image'],
-            isDarkMode: isDarkMode,
-          ),
-          SizedBox(height: 16),
-          _buildDetailCard(
-            title: 'title'.tr(),
-            value: group['name'] ?? 'No name',
-            textColor: textColor,
-            sectionTitleTextColor: sectionTitleTextColor,
-            cardBackgroundColor: cardBackgroundColor,
-          ),
-          _buildDetailCard(
-            title: 'type_study_name'.tr(),
-            value: group['typeStudyName']?.toString() ?? 'No type study',
-            textColor: textColor,
-            sectionTitleTextColor: sectionTitleTextColor,
-            cardBackgroundColor: cardBackgroundColor,
-          ),
-          _buildDetailCard(
-            title: 'category'.tr(),
-            value: group['categoryName']?.toString() ?? 'No category',
-            textColor: textColor,
-            sectionTitleTextColor: sectionTitleTextColor,
-            cardBackgroundColor: cardBackgroundColor,
-          ),
-          _buildDetailCard(
-            title: 'employee'.tr(),
-            value: group['employeeName']?.toString() ?? 'No employee',
-            textColor: textColor,
-            sectionTitleTextColor: sectionTitleTextColor,
-            cardBackgroundColor: cardBackgroundColor,
-          ),
-          _buildDetailCard(
-            title: 'added'.tr(),
-            value: group['createdAt']?.toString() ?? 'No creation date',
-            textColor: textColor,
-            sectionTitleTextColor: sectionTitleTextColor,
-            cardBackgroundColor: cardBackgroundColor,
-          ),
-          _buildDetailCard(
-            title: 'updated'.tr(),
-            value: group['updatedAt']?.toString() ?? 'No update date',
-            textColor: textColor,
-            sectionTitleTextColor: sectionTitleTextColor,
-            cardBackgroundColor: cardBackgroundColor,
-          ),
-          SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => StudentDetailPage(
-                    group: group,
-                    users: List<dynamic>.from(group['usersDto'] ?? []), // Ensure it's a list
+          SizedBox(height: 8),
+          ListView.builder(
+            shrinkWrap: true, // Important to prevent overflow
+            itemCount: users.length,
+            itemBuilder: (context, index) {
+              var user = users[index];
+              var username = '${user['name']} ${user['surname']}';
+              var avatarUrl = user['avatarUrl'] ?? 'https://via.placeholder.com/150';
+
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => UserDetailPage(
+                          user: user,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    elevation: 5,
+                    color: cardBackgroundColor,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 40,
+                            backgroundImage: NetworkImage(avatarUrl),
+                            backgroundColor: Colors.grey.shade200,
+                            onBackgroundImageError: (error, stackTrace) {
+                              // Handle image load error
+                            },
+                          ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: Text(
+                              username,
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               );
             },
-            child: Text('View Students'),
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-            ),
           ),
         ],
       ),

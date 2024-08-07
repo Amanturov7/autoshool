@@ -96,5 +96,9 @@
   "difficulty_level": "Кыйынчылык деңгээли",
   "marka": "Марка",
   "time_remain": "Убакыт калды",
-  "lesson_type": "Сабактын түрү"
+  "lesson_type": "Сабактын түрү",
+  "category": "Категория",
+  "employee": "Куратор",
+  "type_study_name": "Окуу түрү",
+  "users_of_group": "Топ колдонуучулары"
 }

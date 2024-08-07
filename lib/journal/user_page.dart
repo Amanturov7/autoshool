@@ -1,3 +1,5 @@
+import 'package:autoshool/users/UserDetailPage.dart';
+import 'package:autoshool/users/user_detailed_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -9,15 +11,15 @@ class UsersPage extends StatelessWidget {
 
   Future<List<dynamic>> fetchUsers() async {
     final response = await http.get(Uri.parse('${Constants.baseUrl}/rest/user/all'));
+     final userData = json.decode(utf8.decode(response.bodyBytes));
     if (response.statusCode == 200) {
-      return jsonDecode(response.body);
+      return userData;
     } else {
       throw Exception('Failed to load users');
     }
   }
 
   void _createUser(BuildContext context) {
-    // Placeholder function for creating a user
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -65,28 +67,46 @@ class UsersPage extends StatelessWidget {
               itemBuilder: (context, index) {
                 var user = snapshot.data![index];
                 var username = user['username'] ?? 'Unknown username';
-                var avatarUrl = user['avatarUrl'] ?? 'https://via.placeholder.com/150'; // Placeholder avatar URL
+                var avatarUrl = user['avatarUrl'] ?? 'https://via.placeholder.com/150';
 
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                    elevation: 5,
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Row(
-                        children: [
-                          CircleAvatar(
-                            radius: 40, // Adjust the size as needed
-                            backgroundImage: NetworkImage(avatarUrl),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => UserDetailPage(
+                            user: user,
                           ),
-                          const SizedBox(width: 16), // Adjust spacing between avatar and text
-                          Expanded(
-                            child: Text(username, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                          ),
-                        ],
+                        ),
+                      );
+                    },
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      elevation: 5,
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 40,
+                              backgroundImage: NetworkImage(avatarUrl),
+                            ),
+                            const SizedBox(width: 16),
+                            Expanded(
+                              child: Text(
+                                username,
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

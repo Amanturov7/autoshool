@@ -95,5 +95,9 @@
   "difficulty_level": "Difficulty level",
   "marka": "Brand",
   "time_remain": "Time Remain",
-  "lesson_type": "Lesson type"
+  "lesson_type": "Lesson type",
+  "category": "Category",
+  "employee": "Employee",
+  "type_study_name": "Study type",
+  "users_of_group": "Group users"
 }

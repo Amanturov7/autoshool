@@ -96,5 +96,9 @@
   "difficulty_level": "Уровень сложности",
   "marka": "Марка",
   "time_remain": "Оставшееся время",
-  "lesson_type": "Тип урока"
+  "lesson_type": "Тип урока",
+  "category": "Категория",
+  "employee": "Куратор",
+  "type_study_name": "Тип обучения",
+  "users_of_group": "Пользователи группы"
 }
