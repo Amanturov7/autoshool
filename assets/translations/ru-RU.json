@@ -100,5 +100,6 @@
   "category": "Категория",
   "employee": "Куратор",
   "type_study_name": "Тип обучения",
-  "users_of_group": "Пользователи группы"
+  "users_of_group": "Пользователи группы",
+  "students_group": "Студенты группы"
 }

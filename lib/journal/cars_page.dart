@@ -49,12 +49,12 @@ class CarsPage extends StatelessWidget {
                 var imageUrl = car['imageUrl'] ?? 'https://via.placeholder.com/150'; // Placeholder image URL
 
                 return Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(2.0),
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    elevation: 5,
+                    elevation: 3,
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Row(

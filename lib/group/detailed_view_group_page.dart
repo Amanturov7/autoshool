@@ -20,7 +20,7 @@ class GroupDetailPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Group Details'),
+        title: Text(group['name'] ?? 'No name'),
         elevation: 0,
         shape: Border(
           bottom: BorderSide(
@@ -33,10 +33,10 @@ class GroupDetailPage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
-          _buildImageSection(
-            imagePath: group['image'],
-            isDarkMode: isDarkMode,
-          ),
+          // _buildImageSection(
+          //   imagePath: group['image'],
+          //   isDarkMode: isDarkMode,
+          // ),
           SizedBox(height: 16),
           _buildDetailCard(
             title: 'title'.tr(),
@@ -81,8 +81,11 @@ class GroupDetailPage extends StatelessWidget {
             cardBackgroundColor: cardBackgroundColor,
           ),
           SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: () {
+         
+                          SizedBox(
+                  height: 70, // Задаем фиксированную высоту для кнопки
+                  child: ElevatedButton(
+                     onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -93,14 +96,25 @@ class GroupDetailPage extends StatelessWidget {
                 ),
               );
             },
-            child: Text('View Students'),
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-            ),
-          ),
+                    child: Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.all(16),
+                      alignment: Alignment.center,
+                      
+                      child: Text(
+                        'students_group'.tr(),
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:Colors.green,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      minimumSize: Size(double.infinity, 70),
+                    ),
+                  ),
+                )
         ],
       ),
     );

@@ -19,7 +19,7 @@ class UserDetailPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('${user['username']}'),
+        title: Text('${user['name']} ${user['surname']}'), // Displaying user's name
         elevation: 0,
         shape: Border(
           bottom: BorderSide(
@@ -38,8 +38,8 @@ class UserDetailPage extends StatelessWidget {
           ),
           SizedBox(height: 16),
           _buildDetailCard(
-            title: 'Username'.tr(),
-            value: user['username'] ?? 'No username',
+            title: 'username'.tr(),
+            value: user['name'] ?? 'No username',
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
@@ -47,6 +47,62 @@ class UserDetailPage extends StatelessWidget {
           _buildDetailCard(
             title: 'Email'.tr(),
             value: user['email'] ?? 'No email',
+            textColor: textColor,
+            sectionTitleTextColor: sectionTitleTextColor,
+            cardBackgroundColor: cardBackgroundColor,
+          ),
+          _buildDetailCard(
+            title: 'address'.tr(),
+            value: user['address'] ?? 'No address',
+            textColor: textColor,
+            sectionTitleTextColor: sectionTitleTextColor,
+            cardBackgroundColor: cardBackgroundColor,
+          ),
+          _buildDetailCard(
+            title: 'phone'.tr(),
+            value: (user['phone'] ?? 'No phone').toString(), // Ensure value is a string
+            textColor: textColor,
+            sectionTitleTextColor: sectionTitleTextColor,
+            cardBackgroundColor: cardBackgroundColor,
+          ),
+          _buildDetailCard(
+            title: 'surname'.tr(),
+            value: user['surname'] ?? 'No surname',
+            textColor: textColor,
+            sectionTitleTextColor: sectionTitleTextColor,
+            cardBackgroundColor: cardBackgroundColor,
+          ),
+          _buildDetailCard(
+            title: 'last_name'.tr(),
+            value: user['lastName'] ?? 'No last name',
+            textColor: textColor,
+            sectionTitleTextColor: sectionTitleTextColor,
+            cardBackgroundColor: cardBackgroundColor,
+          ),
+          _buildDetailCard(
+            title: 'birthday'.tr(),
+            value: user['dateOfBirth'] ?? 'No date of birth',
+            textColor: textColor,
+            sectionTitleTextColor: sectionTitleTextColor,
+            cardBackgroundColor: cardBackgroundColor,
+          ),
+          _buildDetailCard(
+            title: 'Telegram'.tr(),
+            value: user['telegram'] ?? 'No telegram',
+            textColor: textColor,
+            sectionTitleTextColor: sectionTitleTextColor,
+            cardBackgroundColor: cardBackgroundColor,
+          ),
+          _buildDetailCard(
+            title: 'WhatsUp'.tr(),
+            value: user['whatsUp'] ?? 'No WhatsUp',
+            textColor: textColor,
+            sectionTitleTextColor: sectionTitleTextColor,
+            cardBackgroundColor: cardBackgroundColor,
+          ),
+          _buildDetailCard(
+            title: 'group'.tr(),
+            value: user['groupName'] ?? 'No group name',
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,

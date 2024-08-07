@@ -106,7 +106,7 @@ class _GroupsPageState extends State<GroupsPage> {
                 var avatarUrl = group['avatarUrl'] ?? 'https://via.placeholder.com/150'; // Placeholder avatar URL
 
                 return Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(2.0),
                   child: GestureDetector(
                     onTap: () {
                       _viewGroupDetails(group); // Navigate to detail page
@@ -115,9 +115,9 @@ class _GroupsPageState extends State<GroupsPage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
                       ),
-                      elevation: 5,
+                      elevation: 3,
                       child: Padding(
-                        padding: const EdgeInsets.all(20.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: Row(
                           children: [
                             CircleAvatar(

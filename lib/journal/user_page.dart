@@ -66,11 +66,11 @@ class UsersPage extends StatelessWidget {
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
                 var user = snapshot.data![index];
-                var username = user['username'] ?? 'Unknown username';
+                var fio = user['fio'] ?? 'Unknown fio';
                 var avatarUrl = user['avatarUrl'] ?? 'https://via.placeholder.com/150';
 
                 return Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(2.0),
                   child: GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -86,9 +86,9 @@ class UsersPage extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
                       ),
-                      elevation: 5,
+                      elevation: 3,
                       child: Padding(
-                        padding: const EdgeInsets.all(20.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: Row(
                           children: [
                             CircleAvatar(
@@ -98,7 +98,7 @@ class UsersPage extends StatelessWidget {
                             const SizedBox(width: 16),
                             Expanded(
                               child: Text(
-                                username,
+                                fio,
                                 style: const TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,

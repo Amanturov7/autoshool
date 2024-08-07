@@ -94,14 +94,14 @@ class _LessonsPageState extends State<LessonsPage> {
                 var description = lesson['description'] ?? 'No description';
 
                 return Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(2.0),
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    elevation: 5,
+                    elevation: 3,
                     child: Padding(
-                      padding: const EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.all(16.0),
                       child: Row(
                         children: [
                           CircleAvatar(

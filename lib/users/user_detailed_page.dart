@@ -44,7 +44,7 @@ class StudentDetailPage extends StatelessWidget {
               var avatarUrl = user['avatarUrl'] ?? 'https://via.placeholder.com/150';
 
               return Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(2.0),
                 child: GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -60,7 +60,7 @@ class StudentDetailPage extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    elevation: 5,
+                    elevation: 3,
                     color: cardBackgroundColor,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -103,7 +103,6 @@ class StudentDetailPage extends StatelessWidget {
   }) {
     return Container(
       width: double.infinity,
-      height: 200, // Fixed height for image
       decoration: BoxDecoration(
         color: isDarkMode ? Colors.grey.shade800 : Colors.grey.shade200,
         borderRadius: BorderRadius.circular(12),
