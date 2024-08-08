@@ -1,7 +1,6 @@
 import 'package:autoshool/cars/detailed_view_car_page.dart';
-import 'package:autoshool/group/detailed_view_group_page.dart';
+import 'package:autoshool/group/group_page.dart';
 import 'package:autoshool/home/books_page.dart';
-import 'package:autoshool/journal/group_page.dart';
 import 'package:autoshool/lessons/detailed_view_lesson_page.dart';
 import 'package:autoshool/schedule_page.dart';
 import 'package:flutter/material.dart';

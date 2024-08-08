@@ -263,7 +263,7 @@ class _CreateCarPageState extends State<CreateCarPage> {
       padding: EdgeInsets.all(16),
       alignment: Alignment.center,
       child: Text(
-        'login_in'.tr(),
+        'create_car'.tr(),
         style: TextStyle(fontSize: 20, color: Colors.white),
       ),
     ),

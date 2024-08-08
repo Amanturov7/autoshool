@@ -100,5 +100,6 @@
   "employee": "Employee",
   "type_study_name": "Study type",
   "users_of_group": "Group users",
-  "students_group": "Students of group"
+  "students_group": "Students of group",
+  "create_employee": "Add an employee"
 }

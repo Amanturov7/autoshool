@@ -4,12 +4,12 @@ import 'dart:convert';
 import 'package:autoshool/constants.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class CreateGroupPage extends StatefulWidget {
+class CreateEmployeePage extends StatefulWidget {
   @override
-  _CreateGroupPageState createState() => _CreateGroupPageState();
+  _CreateEmployeePageState createState() => _CreateEmployeePageState();
 }
 
-class _CreateGroupPageState extends State<CreateGroupPage> {
+class _CreateEmployeePageState extends State<CreateEmployeePage> {
   final _formKey = GlobalKey<FormState>();
   late Future<List<dynamic>> _typeStudyFuture;
   late Future<List<dynamic>> _categoryFuture;
@@ -27,9 +27,9 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
 
   Future<List<dynamic>> fetchTypeStudy() async {
     final response = await http.get(Uri.parse('${Constants.baseUrl}/rest/common-reference/by-type/004'));
-     final groupData = json.decode(utf8.decode(response.bodyBytes));
+     final employeeData = json.decode(utf8.decode(response.bodyBytes));
     if (response.statusCode == 200) {
-      return groupData ?? [];
+      return employeeData ?? [];
     } else {
       throw Exception('Failed to load type study data');
     }
@@ -49,7 +49,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
       _formKey.currentState!.save();
 
       final response = await http.post(
-        Uri.parse('${Constants.baseUrl}/rest/groups'),
+        Uri.parse('${Constants.baseUrl}/rest/employee/create'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'name': _name,
@@ -63,7 +63,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
       } else {
         // Handle error
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('group_create_error'.tr()),
+          content: Text('employee_create_error'.tr()),
         ));
       }
     }
@@ -77,7 +77,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
     Color iconColor = isDarkTheme ? Colors.green : Colors.green;
     return Scaffold(
       appBar: AppBar(
-        title: Text('create_group'.tr()),
+        title: Text('create_employee'.tr()),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -207,7 +207,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
       padding: EdgeInsets.all(16),
       alignment: Alignment.center,
       child: Text(
-        'create_group'.tr(),
+        'create_employee'.tr(),
         style: TextStyle(fontSize: 20, color: Colors.white),
       ),
     ),

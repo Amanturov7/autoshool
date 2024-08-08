@@ -101,5 +101,6 @@
   "employee": "Куратор",
   "type_study_name": "Тип обучения",
   "users_of_group": "Пользователи группы",
-  "students_group": "Студенты группы"
+  "students_group": "Студенты группы",
+  "create_employee": "Добавить сотрудника"
 }
