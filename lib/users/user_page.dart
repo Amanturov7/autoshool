@@ -1,4 +1,5 @@
 import 'package:autoshool/users/UserDetailPage.dart';
+import 'package:autoshool/users/form_user.dart';
 import 'package:autoshool/users/user_detailed_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -20,29 +21,10 @@ class UsersPage extends StatelessWidget {
   }
 
   void _createUser(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Create User'),
-          content: Text('Add UI elements here to create a user.'),
-          actions: <Widget>[
-            TextButton(
-              child: Text('Cancel'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              child: Text('Create'),
-              onPressed: () {
-                // Implement logic to create a user
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
+
+  Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CreateUserPage()),
     );
   }
 

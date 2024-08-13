@@ -1,36 +1,25 @@
-import 'package:autoshool/dark_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:autoshool/dark_theme.dart'; // Import if you have a custom theme provider
 
 class CarDetailPage extends StatelessWidget {
-  final Map<String, dynamic> car = {
-    'name': 'Tesla Model S',
-    'model': 'Model S',
-    'color': 'Red',
-    'engine': 3.2,
-    'year': 2022,
-    'difficultyLevel': 1,
-    'createdAt': DateTime.now().subtract(Duration(days: 30)).toString(),
-    'updatedAt': DateTime.now().subtract(Duration(days: 10)).toString(),
-    'image': 'assets/images/groups.png', // Моковое изображение
-  };
+  final Map<String, dynamic> car;
+
+  const CarDetailPage({Key? key, required this.car}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
 
     final backgroundColor = isDarkMode ? Colors.grey.shade900 : Colors.white;
-    final textColor =
-        isDarkMode ? Colors.grey[300] ?? Colors.grey : Colors.black87;
-    final sectionTitleTextColor =
-        isDarkMode ? Colors.grey[400] ?? Colors.grey : Colors.black54;
-    final cardBackgroundColor =
-        isDarkMode ? Colors.grey.shade800 : Colors.white;
+    final textColor = isDarkMode ? Colors.grey[300] ?? Colors.grey : Colors.black87;
+    final sectionTitleTextColor = isDarkMode ? Colors.grey[400] ?? Colors.grey : Colors.black54;
+    final cardBackgroundColor = isDarkMode ? Colors.grey.shade800 : Colors.white;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Car Details'),
+        title: Text(car['title'] ?? 'No title'), // Handle potential null value
         elevation: 0,
         shape: Border(
             bottom: BorderSide(
@@ -42,62 +31,62 @@ class CarDetailPage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         children: [
           _buildImageSection(
-            imagePath: car['image'],
+            imagePath: car['imageUrl'],
             isDarkMode: isDarkMode,
           ),
           SizedBox(height: 16),
           _buildDetailCard(
             title: 'marka'.tr(),
-            value: car['name'] ?? 'No name',
+            value: car['name'] ?? 'No name', // Default value for null
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
           ),
           _buildDetailCard(
             title: 'model'.tr(),
-            value: car['model'] ?? 'No model',
+            value: car['model'] ?? 'No model', // Default value for null
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
           ),
           _buildDetailCard(
             title: 'color'.tr(),
-            value: car['color'] ?? 'No color',
+            value: car['color'] ?? 'No color', // Default value for null
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
           ),
           _buildDetailCard(
             title: 'engine'.tr(),
-            value: car['engine']?.toString() ?? 'No engine info',
+            value: car['engine']?.toString() ?? 'No engine info', // Convert to string and handle null
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
           ),
           _buildDetailCard(
             title: 'year'.tr(),
-            value: car['year']?.toString() ?? 'No year info',
+            value: car['year']?.toString() ?? 'No year info', // Convert to string and handle null
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
           ),
           _buildDetailCard(
             title: 'difficulty_level'.tr(),
-            value: car['difficultyLevel']?.toString() ?? 'No difficulty info',
+            value: car['difficultyLevel']?.toString() ?? 'No difficulty info', // Convert to string and handle null
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
           ),
           _buildDetailCard(
             title: 'added'.tr(),
-            value: car['createdAt']?.toString() ?? 'No creation date',
+            value: car['createdAt'] ?? 'No creation date', // Default value for null
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
           ),
           _buildDetailCard(
             title: 'updated'.tr(),
-            value: car['updatedAt']?.toString() ?? 'No update date',
+            value: car['updatedAt'] ?? 'No update date', // Default value for null
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
@@ -113,19 +102,19 @@ class CarDetailPage extends StatelessWidget {
   }) {
     return Container(
       width: double.infinity,
-      height: 200, // Фиксированная высота для изображения
+      height: 200, // Fixed height for image
       decoration: BoxDecoration(
         color: isDarkMode ? Colors.grey.shade800 : Colors.grey.shade200,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
           color: isDarkMode ? Colors.grey.shade600 : Colors.grey.shade400,
-          width: 2, // Размер бордера
+          width: 2, // Border size
         ),
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(12), // Радиус углов
+        borderRadius: BorderRadius.circular(12), // Corner radius
         child: imagePath != null && imagePath.isNotEmpty
-            ? Image.asset(
+            ? Image.network(
                 imagePath,
                 fit: BoxFit.cover,
               )

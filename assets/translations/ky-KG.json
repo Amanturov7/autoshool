@@ -77,7 +77,6 @@
   "location": "Жайгашкан жери",
   "select_category_type": "Категория түрүн тандаңыз",
   "create_car": "Машина түзүү",
-  "Create_lesson": "Сабак түзүү",
   "create_user": "Колдонуучу түзүү",
   "study_card": "Окуу картасы",
   "schedule": "Расписание",
@@ -102,5 +101,7 @@
   "type_study_name": "Окуу түрү",
   "users_of_group": "Топ колдонуучулары",
   "students_group": "Топтун Студенттер",
-  "create_employee": "Кызматкерди кошуу"
+  "create_employee": "Кызматкерди кошуу",
+  "days": "Күн",
+  "create_lesson": "Сабак түзүү"
 }

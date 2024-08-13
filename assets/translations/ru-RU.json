@@ -77,7 +77,6 @@
   "location": "Местоположение",
   "select_category_type": "Выберите тип категории",
   "create_car": "Создать машину",
-  "Create_lesson": "Создать урок",
   "create_user": "Создать пользователя",
   "study_card": "Учебная карточка",
   "schedule": "Расписание",
@@ -102,5 +101,7 @@
   "type_study_name": "Тип обучения",
   "users_of_group": "Пользователи группы",
   "students_group": "Студенты группы",
-  "create_employee": "Добавить сотрудника"
+  "create_employee": "Добавить сотрудника",
+  "days": "Дней",
+  "create_lesson": "Создать урок"
 }

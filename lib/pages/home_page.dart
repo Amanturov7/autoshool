@@ -1,7 +1,9 @@
+import 'package:autoshool/cars/cars_page.dart';
 import 'package:autoshool/cars/detailed_view_car_page.dart';
 import 'package:autoshool/group/group_page.dart';
 import 'package:autoshool/home/books_page.dart';
 import 'package:autoshool/lessons/detailed_view_lesson_page.dart';
+import 'package:autoshool/lessons/lesson_page.dart';
 import 'package:autoshool/schedule_page.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -68,7 +70,7 @@ class HomePage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => CarDetailPage()),
+                      MaterialPageRoute(builder: (context) => CarsPage()),
                     );
                   },
                   icon: Image.asset(
@@ -124,7 +126,7 @@ class HomePage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => DetailedViewLessonPage()),
+                          builder: (context) => LessonsPage()),
                     );
                   },
                   icon: Image.asset(

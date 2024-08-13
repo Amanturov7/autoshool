@@ -33,8 +33,10 @@ class _CreateLessonPageState extends State<CreateLessonPage> {
 
   Future<List<dynamic>> fetchGroups() async {
     final response = await http.get(Uri.parse('${Constants.baseUrl}/rest/groups/all'));
+         final groupsData = json.decode(utf8.decode(response.bodyBytes));
+
     if (response.statusCode == 200) {
-      return jsonDecode(response.body) ?? [];
+      return groupsData ?? [];
     } else {
       throw Exception('Failed to load groups');
     }
@@ -42,8 +44,10 @@ class _CreateLessonPageState extends State<CreateLessonPage> {
 
   Future<List<dynamic>> fetchLessonTypes() async {
     final response = await http.get(Uri.parse('${Constants.baseUrl}/rest/common-reference/by-type/003'));
+             final lessonTypeData = json.decode(utf8.decode(response.bodyBytes));
+
     if (response.statusCode == 200) {
-      return jsonDecode(response.body) ?? [];
+      return lessonTypeData ?? [];
     } else {
       throw Exception('Failed to load lesson types');
     }
@@ -86,7 +90,7 @@ class _CreateLessonPageState extends State<CreateLessonPage> {
        Color buttonTextColor = isDarkTheme ? Colors.grey : Color.fromARGB(255, 54, 53, 53);
     Color iconColor = isDarkTheme ? Colors.green : Colors.green;
     return Scaffold(
-      appBar: AppBar(title: Text('Create Lesson')),
+      appBar: AppBar(title: Text('create_lesson'.tr())),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -95,7 +99,7 @@ class _CreateLessonPageState extends State<CreateLessonPage> {
             children: [
               TextFormField(
                 decoration: InputDecoration(
-                  hintText: 'login'.tr(),
+                  hintText: 'title'.tr(),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -117,7 +121,7 @@ class _CreateLessonPageState extends State<CreateLessonPage> {
               const SizedBox(height: 16.0),
               TextFormField(
                 decoration: InputDecoration(
-                  hintText: 'login'.tr(),
+                  hintText: 'description'.tr(),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -143,7 +147,7 @@ class _CreateLessonPageState extends State<CreateLessonPage> {
                   } else {
                     return DropdownButtonFormField<int>(
                       decoration: InputDecoration(
-                  hintText: 'login'.tr(),
+                  hintText: 'groups'.tr(),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -187,7 +191,7 @@ class _CreateLessonPageState extends State<CreateLessonPage> {
                   } else {
                     return DropdownButtonFormField<int>(
                       decoration: InputDecoration(
-                  hintText: 'login'.tr(),
+                  hintText: 'lesson_type'.tr(),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -221,7 +225,6 @@ class _CreateLessonPageState extends State<CreateLessonPage> {
               const SizedBox(height: 16.0),
               DropdownButtonFormField<int>(
                 decoration: InputDecoration(
-                  hintText: 'login'.tr(),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -234,7 +237,7 @@ class _CreateLessonPageState extends State<CreateLessonPage> {
                 items: _durations.map<DropdownMenuItem<int>>((int duration) {
                   return DropdownMenuItem<int>(
                     value: duration,
-                    child: Text('$duration days'),
+                    child: Text('$duration '+ 'days'.tr()),
                   );
                 }).toList(),
                 onChanged: (int? value) {
@@ -268,7 +271,7 @@ class _CreateLessonPageState extends State<CreateLessonPage> {
       padding: EdgeInsets.all(16),
       alignment: Alignment.center,
       child: Text(
-        'login_in'.tr(),
+        'create_lesson'.tr(),
         style: TextStyle(fontSize: 20, color: Colors.white),
       ),
     ),

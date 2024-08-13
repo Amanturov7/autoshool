@@ -29,8 +29,10 @@ class _CreateCarPageState extends State<CreateCarPage> {
 
   Future<List<dynamic>> fetchEmployees() async {
     final response = await http.get(Uri.parse('${Constants.baseUrl}/rest/employee/all'));
+        final employeesData = json.decode(utf8.decode(response.bodyBytes));
+
     if (response.statusCode == 200) {
-      return jsonDecode(response.body) ?? [];
+      return employeesData ?? [];
     } else {
       throw Exception('Failed to load employees');
     }
@@ -84,7 +86,7 @@ class _CreateCarPageState extends State<CreateCarPage> {
               
               TextFormField(
                 decoration: InputDecoration(
-                  hintText: 'login'.tr(),
+                  hintText: 'marka'.tr(),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -106,7 +108,7 @@ class _CreateCarPageState extends State<CreateCarPage> {
               const SizedBox(height: 16.0),
               TextFormField(
                 decoration: InputDecoration(
-                  hintText: 'login'.tr(),
+                  hintText: 'model'.tr(),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -128,7 +130,7 @@ class _CreateCarPageState extends State<CreateCarPage> {
               const SizedBox(height: 16.0),
               TextFormField(
                 decoration: InputDecoration(
-                  hintText: 'login'.tr(),
+                  hintText: 'color'.tr(),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -151,7 +153,7 @@ class _CreateCarPageState extends State<CreateCarPage> {
               const SizedBox(height: 16.0),
               TextFormField(
                 decoration: InputDecoration(
-                  hintText: 'login'.tr(),
+                  hintText: 'engine'.tr(),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -174,7 +176,7 @@ class _CreateCarPageState extends State<CreateCarPage> {
               const SizedBox(height: 16.0),
               TextFormField(
                 decoration: InputDecoration(
-                  hintText: 'login'.tr(),
+                  hintText: 'year'.tr(),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -197,7 +199,7 @@ class _CreateCarPageState extends State<CreateCarPage> {
               const SizedBox(height: 16.0),
               TextFormField(
                 decoration: InputDecoration(
-                  hintText: 'login'.tr(),
+                  hintText: 'difficulty_level'.tr(),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -226,15 +228,24 @@ class _CreateCarPageState extends State<CreateCarPage> {
                   } else if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
                   } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                    return Text('No employees available');
+                    return Text('no_employee_data'.tr());
                   } else {
                     return DropdownButtonFormField<int>(
-                      decoration: InputDecoration(labelText: 'Employee'),
+                      decoration: InputDecoration(
+                        hintText: 'employee'.tr(),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: iconColor),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
                       items: snapshot.data!
                           .map<DropdownMenuItem<int>>((employee) {
                         return DropdownMenuItem<int>(
                           value: employee['id'],
-                          child: Text(employee['name'] ?? 'Unknown employee name'),
+                          child: Text(employee['name'] ?? 'Unknown employee'),
                         );
                       }).toList(),
                       onChanged: (value) {
@@ -244,7 +255,7 @@ class _CreateCarPageState extends State<CreateCarPage> {
                       },
                       validator: (value) {
                         if (value == null) {
-                          return 'Please select an employee';
+                          return 'Please_select_employee'.tr();
                         }
                         return null;
                       },

@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:search_page/search_page.dart';
 import 'package:autoshool/constants.dart';
+import 'package:autoshool/lessons/detailed_view_lesson_page.dart'; // Import the DetailedViewLessonPage
+import 'package:easy_localization/easy_localization.dart';
 
 class LessonsPage extends StatefulWidget {
   const LessonsPage({Key? key}) : super(key: key);
@@ -40,11 +42,15 @@ class _LessonsPageState extends State<LessonsPage> {
 
   @override
   Widget build(BuildContext context) {
-         bool isDarkTheme = Theme.of(context).brightness == Brightness.dark;
-        Color TextColor = isDarkTheme ? Colors.grey : Color.fromARGB(255, 54, 53, 53);
+    bool isDarkTheme = Theme.of(context).brightness == Brightness.dark;
+    Color textColor = isDarkTheme ? Colors.grey : Color.fromARGB(255, 54, 53, 53);
+
     return Scaffold(
       appBar: AppBar(
+                title: Text('lessons'.tr()),
+
         actions: [
+          
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () async {
@@ -66,7 +72,12 @@ class _LessonsPageState extends State<LessonsPage> {
                     child: ListTile(
                       title: Text(lesson['name']),
                       onTap: () {
-                        // Actions when item is tapped
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailedViewLessonPage(lesson: lesson),
+                          ),
+                        );
                       },
                     ),
                   ),
@@ -100,26 +111,36 @@ class _LessonsPageState extends State<LessonsPage> {
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     elevation: 3,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        children: [
-                          CircleAvatar(
-                            radius: 40,
-                            backgroundImage: NetworkImage('https://via.placeholder.com/150'),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailedViewLessonPage(lesson: lesson),
                           ),
-                          SizedBox(width: 16),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(lessonName, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: TextColor)),
-                                SizedBox(height: 8),
-                                Text(description, style: TextStyle(fontSize: 14, color: TextColor)),
-                              ],
+                        );
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 40,
+                              backgroundImage: NetworkImage('https://via.placeholder.com/150'),
                             ),
-                          ),
-                        ],
+                            SizedBox(width: 16),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(lessonName, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: textColor)),
+                                  SizedBox(height: 8),
+                                  Text(description, style: TextStyle(fontSize: 14, color: textColor)),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -135,7 +156,7 @@ class _LessonsPageState extends State<LessonsPage> {
           _createLesson();
         },
         label: Text(
-          'Create Lesson', style: TextStyle(fontSize: 18, color:Colors.white),
+          'create_lesson'.tr(), style: TextStyle(fontSize: 18, color: Colors.white),
         ),
         backgroundColor: const Color.fromRGBO(82, 170, 94, 1.0),
         icon: const Icon(Icons.group_add, color: Colors.white, size: 25),
@@ -143,5 +164,3 @@ class _LessonsPageState extends State<LessonsPage> {
     );
   }
 }
-
-

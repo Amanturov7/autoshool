@@ -4,31 +4,22 @@ import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class DetailedViewLessonPage extends StatelessWidget {
-  final Map<String, dynamic> lesson = {
-    'name': 'Introduction to Flutter',
-    'description': 'A comprehensive introduction to Flutter development.',
-    'createdAt': DateTime.now().subtract(Duration(days: 10)).toString(),
-    'updatedAt': DateTime.now().subtract(Duration(days: 2)).toString(),
-    'timeRemain': '2 hours',
-    'lessonTypeName': 'Beginner',
-  };
+  final Map<String, dynamic> lesson;
+
+  const DetailedViewLessonPage({Key? key, required this.lesson}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
 
     final backgroundColor = isDarkMode ? Colors.grey.shade900 : Colors.white;
-    final textColor =
-        isDarkMode ? Colors.grey[300] ?? Colors.grey : Colors.black87;
-    final headerTextColor = isDarkMode ? Colors.greenAccent : Colors.green;
-    final sectionTitleTextColor =
-        isDarkMode ? Colors.grey[400] ?? Colors.grey : Colors.black54;
-    final cardBackgroundColor =
-        isDarkMode ? Colors.grey.shade800 : Colors.white;
+    final textColor = isDarkMode ? Colors.grey[300] ?? Colors.grey : Colors.black87;
+    final sectionTitleTextColor = isDarkMode ? Colors.grey[400] ?? Colors.grey : Colors.black54;
+    final cardBackgroundColor = isDarkMode ? Colors.grey.shade800 : Colors.white;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Lesson Details'),
+        title: Text(lesson['name']),
         elevation: 0,
         shape: Border(
             bottom: BorderSide(
@@ -69,7 +60,7 @@ class DetailedViewLessonPage extends StatelessWidget {
           ),
           _buildDetailCard(
             title: 'time_remain'.tr(),
-            value: lesson['timeRemain']?.toString() ?? 'No time remain',
+            value: lesson['timeRemain'] ?? 'No time remain',
             textColor: textColor,
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
@@ -81,7 +72,6 @@ class DetailedViewLessonPage extends StatelessWidget {
             sectionTitleTextColor: sectionTitleTextColor,
             cardBackgroundColor: cardBackgroundColor,
           ),
-
         ],
       ),
     );

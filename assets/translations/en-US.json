@@ -76,7 +76,6 @@
   "location": "Location",
   "select_category_type": "Select category type",
   "create_car": "Create car",
-  "Create_lesson": "Create lesson",
   "create_user": "Create user",
   "study_card": "Study card",
   "schedule": "Schedule",
@@ -101,5 +100,7 @@
   "type_study_name": "Study type",
   "users_of_group": "Group users",
   "students_group": "Students of group",
-  "create_employee": "Add an employee"
+  "create_employee": "Add an employee",
+  "days": "Days",
+  "create_lesson": "Create lesson"
 }

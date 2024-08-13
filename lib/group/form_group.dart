@@ -37,8 +37,9 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
 
   Future<List<dynamic>> fetchCategory() async {
     final response = await http.get(Uri.parse('${Constants.baseUrl}/rest/common-reference/by-type/005'));
+    final categoryData = json.decode(utf8.decode(response.bodyBytes));
     if (response.statusCode == 200) {
-      return jsonDecode(response.body) ?? [];
+      return categoryData ?? [];
     } else {
       throw Exception('Failed to load category data');
     }
@@ -151,8 +152,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                   }
                 },
               ),
-                            const SizedBox(height: 16.0),
-
+              const SizedBox(height: 16.0),
               FutureBuilder<List<dynamic>>(
                 future: _categoryFuture,
                 builder: (context, snapshot) {
