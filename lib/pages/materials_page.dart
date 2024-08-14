@@ -1,5 +1,6 @@
 import 'package:autoshool/home/books_page.dart';
 import 'package:autoshool/lessons/lesson_page.dart';
+import 'package:autoshool/tests/tests_page.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -94,7 +95,7 @@ class MaterialsPage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const LessonsPage()),
+                  MaterialPageRoute(builder: (context) => TestsPage()),
                 );
               },
               child: Container(

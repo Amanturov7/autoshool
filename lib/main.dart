@@ -5,7 +5,7 @@ import 'package:autoshool/dark_theme.dart'; // Make sure this file has the Theme
 import 'package:autoshool/pages/home_page.dart';
 import 'package:autoshool/pages/journal_page.dart';
 import 'package:autoshool/pages/materials_page.dart';
-import 'package:autoshool/pages/tests_page.dart';
+import 'package:autoshool/tests/tests_page.dart';
 import 'package:autoshool/pages/profile_page.dart';
 import 'package:autoshool/profile/login_page.dart';
 import 'package:autoshool/profile/signin_page.dart';

@@ -5,6 +5,7 @@ import 'package:autoshool/home/books_page.dart';
 import 'package:autoshool/lessons/detailed_view_lesson_page.dart';
 import 'package:autoshool/lessons/lesson_page.dart';
 import 'package:autoshool/schedule_page.dart';
+import 'package:autoshool/tests/tests_page.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -98,7 +99,7 @@ class HomePage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SchedulePage()),
+                      MaterialPageRoute(builder: (context) => TestsPage()),
                     );
                   },
                   icon: Image.asset(
